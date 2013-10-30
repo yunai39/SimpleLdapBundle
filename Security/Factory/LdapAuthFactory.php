@@ -1,6 +1,6 @@
 <?php
 
-namespace Security\LdapBundle\Security\Factory;
+namespace Yunai39\Bundle\SimpleLdapBundle\Security\Factory;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

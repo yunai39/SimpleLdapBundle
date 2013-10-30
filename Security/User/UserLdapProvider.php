@@ -1,6 +1,6 @@
 <?php
 
-namespace Security\LdapBundle\Security\User;
+namespace Yunai39\Bundle\SimpleLdapBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Translation\TranslatorInterface;
-use Security\LdapBundle\Service\LdapService;
+use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 
 
 class UserLdapProvider implements UserProviderInterface

@@ -1,22 +1,23 @@
 <?php
 
-namespace Security\LdapBundle\Security\Authentification;
+namespace Yunai39\Bundle\SimpleLdapBundle\Security\Authentification;
 
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use Security\LdapBundle\Security\User\UserLdapProvider;
-use Security\LdapBundle\Security\User\UserLdap;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Security\LdapBundle\Service\LdapService;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
+
+use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
+use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider;
+use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdap;
 
 class LdapAuthProvider implements AuthenticationProviderInterface
 {
 
     /**
-     * @var \Security\LdapBundle\Security\User\UserLdapProvider
+     * @var \Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider
      */
     private $userProvider;
 	private $LdapService;

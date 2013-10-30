@@ -1,5 +1,5 @@
 <?php
-namespace Security\LdapBundle\Security\Listener;
+namespace Yunai39\Bundle\SimpleLdapBundle\Security\Listener;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;

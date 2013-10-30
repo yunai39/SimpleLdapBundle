@@ -1,6 +1,6 @@
 <?php
 
-namespace Security\LdapBundle\Service;
+namespace Yunai39\Bundle\SimpleLdapBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -12,9 +12,7 @@ class LdapService
         $this->parameters = $parameters;
     }
 
-    /**
-     * @return adLDAP The instance of the adLdap (lib)
-     */
+
     public function connect()
     {
         $connect = ldap_connect($this->parameters['server'],$this->parameters['port']);

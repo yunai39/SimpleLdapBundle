@@ -1,6 +1,6 @@
 <?php
 
-namespace Security\LdapBundle\Security\User;
+namespace Yunai39\Bundle\SimpleLdapBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 

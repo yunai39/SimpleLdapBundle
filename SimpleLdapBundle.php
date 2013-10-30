@@ -1,12 +1,12 @@
 <?php
 
-namespace Security\LdapBundle;
+namespace Yunai39\Bundle\SimpleLdapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Security\LdapBundle\Security\Factory\LdapAuthFactory;
+use Yunai39\Bundle\SimpleLdapBundle\Security\Factory\LdapAuthFactory;
 
-class SecurityLdapBundle extends Bundle
+// class SimpleLdapBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

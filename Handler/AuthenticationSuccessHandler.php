@@ -1,5 +1,5 @@
 <?php
-namespace Security\LdapBundle\Handler;
+namespace Yunai39\Bundle\SimpleLdapBundle\Handler;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
