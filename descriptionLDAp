@@ -1,0 +1,101 @@
+
+resource(169) of type (ldap link) array(2) 
+{ 
+ ["count"]=> int(1) 
+ [0]=> array(38) {
+    ["businesscategory"]=> array(2) {
+        ["count"]=> int(1)
+        [0]=> string(14) "Administration" 
+        } 
+    [0]=> string(16) "businesscategory" 
+    ["objectclass"]=> array(6) {
+        ["count"]=> int(5) 
+        [0]=> string(20) "organizationalPerson" 
+        [1]=> string(6) "person" 
+        [2]=> string(12) "vtq-personne" 
+        [3]=> string(13) "inetOrgPerson" 
+        [4]=> string(3) "top" 
+     }
+     [1]=> string(11) "objectclass" 
+     ["displayname"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(13) "BENOIT Marine" 
+     } 
+     [2]=> string(11) 
+     "displayname" ["employeetype"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(3) "APP" 
+     }
+     [3]=> string(12) "employeetype" 
+     ["ou"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(3) "DSI" 
+     } 
+     [4]=> string(2) "ou" 
+     ["givenname"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(6) "Marine" 
+     } 
+     [5]=> string(9) "givenname" 
+     ["cn"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(13) "Marine BENOIT" 
+     } 
+     [6]=> string(2) "cn" 
+     ["employeenumber"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(5) "12041" 
+     } 
+     [7]=> string(14) "employeenumber" 
+     ["manager"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(44) "employeeNumber=11310,ou=people,dc=vetoquinol" 
+     } 
+     [8]=> string(7) "manager" 
+     ["labeleduri"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(26) "/opt/yellowpages/12041.jpg" 
+      } 
+      [9]=> string(10) "labeleduri" 
+      ["l"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(4) "Lure" 
+      } 
+      [10]=> string(1) "l" 
+      ["description"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(6) "WFDONE" 
+      } 
+      [11]=> string(11) "description" 
+      ["departmentnumber"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(23) "SI - PROD & TECHNOLOGIE" 
+      } 
+      [12]=> string(16) "departmentnumber" 
+      ["sn"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(6) "BENOIT" 
+      } 
+      [13]=> string(2) "sn" 
+      ["vtq-activite"]=> array(2) {
+        ["count"]=> int(1) 
+        [0]=> string(22) "Information Technology" 
+      } 
+      [14]=> string(12) "vtq-activite" 
+      ["c"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(2) "FR" 
+      } 
+      [15]=> string(1) "c" 
+      ["title"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(15) "Elève apprenti" 
+      } 
+      [16]=> string(5) "title" 
+      ["mail"]=> array(2) { 
+        ["count"]=> int(1) 
+        [0]=> string(28) "marine.benoit@vetoquinol.com" 
+      } 
+      [17]=> string(4) "mail" 
+      ["count"]=> int(18) 
+      ["dn"]=> string(44) "employeeNumber=12041,ou=People,dc=vetoquinol" } }

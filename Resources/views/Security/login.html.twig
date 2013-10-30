@@ -1,0 +1,48 @@
+
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{% trans %}authForm.title{% endtrans %} - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div id="auth_body">
+	<div id="dialog-auth" title="{% trans %}menu.login{% endtrans %}" style="display:none;font-family:Helvetica, Verdana,Arial;font-size:1.2em;margin:10px;">
+	<H3>{% trans %}authController.popup{% endtrans %}<H3></br></br>
+	</div>
+	<fieldset style="margin-top:30px;font-family:Helvetica, Verdana,Arial;">
+		<legend>
+			{% trans %}authForm.title{% endtrans %}
+		</legend>
+		
+		{% if app.session.flashbag.has('Error_auth') %}
+			{% for flashMessage in app.session.flashbag.get('Error_auth') %}
+				<div class="flash-notice">
+				    <img src="{{asset('image/error.png')}}" style="float:left;width:18px;height:18px;"/> &nbsp{{ flashMessage }}
+				</div>
+			{% endfor %}
+		{% endif %}
+			
+		<form action="{{ path('login_check') }}" method="post" style="padding:20px">
+			<table>
+			    <tr>
+			    	<td><label for="username">{% trans %}Login{% endtrans %}:</label></td>
+				    <td><input id="username" type="text" name="_username" value="{{ last_username }}" /></td>
+				</tr>
+			    <tr>
+				    <td><label for="password">{% trans %}authForm.pwd{% endtrans %}:</label></td>
+				    <td><input id="password" type="password" name="_password" /> </td>
+			    </tr>
+				<tr>
+					<td colspan="2" align="center">
+					<input class="button_green" type="submit" value="{% trans %}Ok{% endtrans %}" align="center" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>
+
+
+{% endblock %}

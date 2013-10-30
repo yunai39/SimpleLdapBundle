@@ -1,0 +1,39 @@
+parameters:
+    security_ldap.class: Security\LdapBundle\Service\LdapService
+    security_ldap_provider.class: Security\LdapBundle\Security\User\UserLdapProvider
+    security_authentification_provider.class: Security\LdapBundle\Security\Authentification\LdapAuthProvider
+    security_ldap_user.class: Security\LdapBundle\Security\User\UserLdap
+    security_ldap_listener.class: Security\LdapBundle\Security\Listener\SecurityListener
+
+services:
+    security_ldap_user:
+        class: "%security_ldap_user.class%"
+  
+    security_ldap_service:
+        class: "%security_ldap.class%"
+        arguments: ["%ldap.settings%"]
+    security_ldap_provider:
+        class: "%security_ldap_provider.class%"
+        arguments: ["%ldap.settings.user%",%ldap.settings.role%]
+    security_authentification_provider:
+        class: "%security_authentification_provider.class%"
+        arguments: ["@security_ldap_provider",  "@security_ldap_service"]
+
+    security_ldap_listener:
+        class: "%security_ldap_listener.class%"
+        arguments: ['@router', '%ldap.security.redirects%']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onSecurityInteractiveLogin }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+            
+    security.authentication.success_handler:
+        class:  Security\LdapBundle\Handler\AuthenticationSuccessHandler
+        arguments:  ["@security.http_utils", {}]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    security.authentication.failure_handler:
+        class:  Security\LdapBundle\Handler\AuthenticationFailureHandler
+        arguments:  ["@http_kernel", "@security.http_utils", {}, "@logger"]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }

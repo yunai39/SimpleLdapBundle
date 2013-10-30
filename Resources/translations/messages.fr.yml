@@ -1,0 +1,6 @@
+security.ldap:
+    wrong_credential: Mot de passe ou identifiant invalide
+    bad_instance: Mauvaise instance d'utilisateur'
+authForm:
+    title: Formulaire d'authentification - Vetoquinol
+    pwd: Mot de passe
