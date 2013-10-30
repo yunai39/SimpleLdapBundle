@@ -24,13 +24,13 @@ You need to enable the bundle into your kernel
     
 
 You need to configure your domain specific information
-# define your active directory server
+\# define your active directory server
     ldap.settings:
           server: 172.16.33.153
           port: 389
           account_suffix : employeeNumber 
           base_dn : DC=example,DC=com 
-# The attribut you want your user Class to have, those are the default
+\# The attribut you want your user Class to have, those are the default
     ldap.settings.user:
           FullName: cn
           Email: mail
