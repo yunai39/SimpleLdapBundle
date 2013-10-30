@@ -9,5 +9,5 @@
     "autoload":     {
         "psr-0": { "Yunai39\\Bundle\\SimpleLdapBundle": "" }
     },
-    "target-dir": "Yunai39/Bundle/SimpleLdapBundle",
+    "target-dir": "yunai39/simple-ldap-bundle",
 }

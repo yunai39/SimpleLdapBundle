@@ -29,13 +29,13 @@ services:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
             
     security.authentication.success_handler:
-        class:  security.authentication.success_handler.class
+        class:  "%security.authentication.success_handler.class%"
         arguments:  ["@security.http_utils", {}]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
 
     security.authentication.failure_handler:
-        class:  security.authentication.failure_handler.class
+        class:  "%security.authentication.failure_handler.class%"
         arguments:  ["@http_kernel", "@security.http_utils", {}, "@logger"]
         tags:
             - { name: 'monolog.logger', channel: 'security' }
