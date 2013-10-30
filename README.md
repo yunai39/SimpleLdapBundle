@@ -24,31 +24,30 @@ You need to enable the bundle into your kernel
     
 
 You need to configure your domain specific information
-\# define your active directory server
+
+    # define your active directory server
     ldap.settings:
           server: 172.16.33.153
           port: 389
           account_suffix : employeeNumber 
           base_dn : DC=example,DC=com 
-\# The attribut you want your user Class to have, those are the default
+    # The attribut you want your user Class to have, those are the default
     ldap.settings.user:
           FullName: cn
           Email: mail
-# The buissnessCategory wil determine the role of the user 
+    #The buissnessCategory wil determine the role of the user 
     ldap.role: buissnesscategory
-# The actual definition of the role, here if buissnesscategory is equel to Administration the user will have the ROLE_ADMIN
+    # The actual definition of the role, here if buissnesscategory is equel to Administration the user will have the ROLE_ADMIN
     ldap.settings.role:
           Administration: ROLE_ADMIN
-# The redirection after login based on the ROLE
+    # The redirection after login based on the ROLE
     ldap.security.redirects: { ROLE_USER: user_home, ROLE_ADMIN: admin_home }
     
 Finally, the security parameters (Just what's needed for the undle, the rest is up to you)
-security:
-    encoders:
-        Security\LdapBundle\Security\User\UserLdap : plaintext #Active directory does not support encrypted password yet
 
-    role_hierarchy:
-
+    security:
+        encoders:
+            Security\LdapBundle\Security\User\UserLdap : plaintext #Active directory does not support encrypted password yet
     providers:
         my_active_directory_provider:
               id: security_ldap_provider
