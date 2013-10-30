@@ -1,7 +1,7 @@
 {
     "name": "yunai39/simple-ldap-bundle",
     "description":  "This bundle provides an integration of Symfony Security for an LDAP Annuary",
-    "keywords":     ["ldap", "bundle", "symfony", "security", "annuary"],
+    "keywords":     ["ldap", "bundle", "symfony", "security", "active directory"],
     "type":         "symfony-bundle",
     "require": {
         "php": ">=5.2.4",
@@ -9,5 +9,5 @@
     "autoload":     {
         "psr-0": { "Yunai39\\Bundle\\SimpleLdapBundle": "" }
     },
-    "target-dir": "yunai39/simple-ldap-bundle",
+    "target-dir": "Yunai39/Bundle/SimpleLdapBundle",
 }
