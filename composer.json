@@ -4,7 +4,6 @@
     "keywords":     ["ldap"],
     "type":         "symfony-bundle",
     "require": {
-        "php": ">=5.4.11",
         "symfony/framework-bundle": "~2.0"
     }
     "autoload":     {
