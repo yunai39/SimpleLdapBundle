@@ -11,7 +11,6 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider;
-use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdap;
 
 class LdapAuthProvider implements AuthenticationProviderInterface
 {
@@ -41,7 +40,7 @@ class LdapAuthProvider implements AuthenticationProviderInterface
     public function authenticate(TokenInterface $token)
     {
         $User   = $this->userProvider->loadUserByUsername($token->getUsername());
-        if ($User instanceof UserLdap) {
+        if ($User) {
             if (!$this->LdapService->authenticate($User->getUsername(), $token->getCredentials())) {
                 $msg =  'security.ldap.wrong_credential';
                 throw new BadCredentialsException($msg);

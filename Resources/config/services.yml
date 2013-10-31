@@ -2,14 +2,11 @@ parameters:
     security_ldap.class: Yunai39\Bundle\SimpleLdapBundle\Service\LdapService
     security_ldap_provider.class: Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider
     security_authentification_provider.class: Yunai39\Bundle\SimpleLdapBundle\Security\Authentification\LdapAuthProvider
-    security_ldap_user.class: Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdap
     security_ldap_listener.class: Yunai39\Bundle\SimpleLdapBundle\Security\Listener\SecurityListener
     security.authentication.success_handler.class: Yunai39\Bundle\SimpleLdapBundle\Handler\AuthenticationSuccessHandler
     security.authentication.failure_handler.class: Yunai39\Bundle\SimpleLdapBundle\Handler\AuthenticationFailureHandler
 
 services:
-    security_ldap_user:
-        class: "%security_ldap_user.class%"
   
     security_ldap_service:
         class: "%security_ldap.class%"
