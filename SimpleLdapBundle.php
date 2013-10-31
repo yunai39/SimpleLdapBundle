@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Yunai39\Bundle\SimpleLdapBundle\Security\Factory\LdapAuthFactory;
 
-// class SimpleLdapBundle extends Bundle
+class SimpleLdapBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

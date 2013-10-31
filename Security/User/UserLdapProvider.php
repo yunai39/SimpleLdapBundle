@@ -16,10 +16,12 @@ class UserLdapProvider implements UserProviderInterface
 
 	protected $setting;
 	protected $role;
+	protected $class;
 	
-	public function __construct($setting,$role){
+	public function __construct($setting,$role,$class){
 		$this->setting = $setting;
 		$this->role = $role;
+		$this->class = $class;
 	}
 
     /**
@@ -30,7 +32,6 @@ class UserLdapProvider implements UserProviderInterface
      *
      * @param string $username The username
      *
-     * @return UserLdap
      *
      * @see UsernameNotFoundException
      *
@@ -41,7 +42,7 @@ class UserLdapProvider implements UserProviderInterface
     {
         // The password is set to something impossible to find.
         try {
-            $user       = new UserLdap($username, uniqid(true) . rand(
+            $user       = new $this->class($username, uniqid(true) . rand(
                     0,
                     424242
                 ), array());
@@ -71,7 +72,7 @@ class UserLdapProvider implements UserProviderInterface
      */
     public function refreshUser(UserInterface $user)
     {
-        if (!$user instanceof UserLdap) {
+        if (!$user) {
             $msg = $this->translator->trans(
                 'security.ldap.bad_instance'
             );
@@ -82,7 +83,7 @@ class UserLdapProvider implements UserProviderInterface
     }
 
 
-    public function fetchData(UserLdap $adUser, TokenInterface $token, LdapService $ldapService)
+    public function fetchData( $adUser, TokenInterface $token, LdapService $ldapService)
     {
     	$connected = $ldapService->connect();
         $isAD      = $ldapService->authenticate($adUser->getUsername(), $token->getCredentials());
