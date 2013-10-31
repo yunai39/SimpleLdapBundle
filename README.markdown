@@ -15,7 +15,12 @@ Installation
 ------------
 
 You need to add a package to your dependency list :
-    %TODO%
+
+	"yunai39/simple-ldap-bundle": "dev-master"
+	
+When do a composer update:
+	
+	composer update "yunai39/simple-ldap-bundle"
 
 You need to enable the bundle into your kernel
 
@@ -27,17 +32,17 @@ You need to configure your domain specific information
 
     # define your active directory server
     ldap.settings:
-          server: 172.16.33.153
-          port: 389
-          account_suffix : employeeNumber 
-          base_dn : DC=example,DC=com 
+          server: ip.to.your.server
+          port: 389 ou 636
+          account_suffix : employeeNumber # The account suffix will be the parameter used to search your ldap
+          base_dn : DC=example,DC=com  
     # The attribut you want your user Class to have, those are the default
     ldap.settings.user:
-          FullName: cn
+          FullName: cn # Here the ldap attribut cn will be set to FullName in the User Class
           Email: mail
     #The buissnessCategory wil determine the role of the user 
     ldap.role: buissnesscategory
-    # The actual definition of the role, here if buissnesscategory is equel to Administration the user will have the ROLE_ADMIN
+    # The actual definition of the role, here if buissnesscategory is equal to Administration the user will have the ROLE_ADMIN
     ldap.settings.role:
           Administration: ROLE_ADMIN
     # The redirection after login based on the ROLE
@@ -45,7 +50,7 @@ You need to configure your domain specific information
     # Name of the user class
     ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
     
-Finally, the security parameters (Just what's needed for the undle, the rest is up to you)
+Finally, the security parameters (Just what's needed for the Bundle, the rest is up to you)
 
     security:
         encoders:
@@ -62,4 +67,4 @@ You can use the authentification via Ajax, instead of sending you a redirection,
 
 This Bundle doesn't need any databases, the password will not be registred anywhere. As it use the php_ldap extension, you can use ldaps (You will need to configure ldap on you own)
 
-SSL part of the lib isn't used yet and haven't been tested with Symfony
+SSL part of the lib isn't used (But fell free to test it)
