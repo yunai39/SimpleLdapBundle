@@ -42,6 +42,8 @@ You need to configure your domain specific information
           Administration: ROLE_ADMIN
     # The redirection after login based on the ROLE
     ldap.security.redirects: { ROLE_USER: user_home, ROLE_ADMIN: admin_home }
+    # Name of the user class
+    ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
     
 Finally, the security parameters (Just what's needed for the undle, the rest is up to you)
 
