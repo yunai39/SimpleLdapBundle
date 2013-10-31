@@ -5,9 +5,9 @@
     "type":         "symfony-bundle",
     "require": {
         "php": ">=5.2.4"
-    }
+    },
     "autoload":     {
         "psr-0": { "Yunai39\\Bundle\\SimpleLdapBundle": "" }
     },
-    "target-dir": "Yunai39/Bundle/SimpleLdapBundle",
+    "target-dir": "Yunai39/Bundle/SimpleLdapBundle"
 }
