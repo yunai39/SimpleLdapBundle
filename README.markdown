@@ -71,5 +71,3 @@ Useful information
 You can use the authentification via Ajax, instead of sending you a redirection, a json response wil be send true ou false
 
 This Bundle doesn't need any databases, the password will not be registred anywhere. As it use the php_ldap extension, you can use ldaps (You will need to configure ldap on you own)
-
-SSL part of the lib isn't used (But fell free to test it)
