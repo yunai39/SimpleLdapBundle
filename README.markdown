@@ -28,6 +28,9 @@ You need to enable the bundle into your kernel
     new Yunai39\Bundle\SimpleLdapBundle\SimpleLdapBundle(),
     
 
+Configuration
+-------------
+
 You need to configure your domain specific information
 
     # define your active directory server
@@ -49,7 +52,9 @@ You need to configure your domain specific information
     ldap.security.redirects: { ROLE_USER: user_home, ROLE_ADMIN: admin_home }
     # Name of the user class
     ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
-    
+
+You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
+
 Finally, the security parameters (Just what's needed for the Bundle, the rest is up to you)
 
     security:
