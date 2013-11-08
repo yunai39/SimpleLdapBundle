@@ -1,5 +1,4 @@
 
-
 {% extends "::layout.html.twig" %}
 
 {% block title %}
@@ -16,12 +15,8 @@
 			{% trans %}authForm.title{% endtrans %}
 		</legend>
 		
-		{% if app.session.flashbag.has('Error_auth') %}
-			{% for flashMessage in app.session.flashbag.get('Error_auth') %}
-				<div class="flash-notice">
-				    <img src="{{asset('image/error.png')}}" style="float:left;width:18px;height:18px;"/> &nbsp{{ flashMessage }}
-				</div>
-			{% endfor %}
+		{% if error %}
+		    <div>{{ error.message }}</div>
 		{% endif %}
 			
 		<form action="{{ path('login_check') }}" method="post" style="padding:20px">
