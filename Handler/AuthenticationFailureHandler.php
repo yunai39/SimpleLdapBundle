@@ -19,7 +19,7 @@ class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler {
         if( $request->isXmlHttpRequest() ) {
             $response = new JsonResponse( 'false' );
         } else {
-            $response = parent::onAuthenticationFailure( $request, $exception );
+            $response = new RedirectResponse($request->headers->get('referer'));
         }
         return $response;
     }

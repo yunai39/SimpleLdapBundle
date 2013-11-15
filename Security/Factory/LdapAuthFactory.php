@@ -36,13 +36,9 @@ class LdapAuthFactory extends FormLoginFactory
                 new DefinitionDecorator('security_authentification_provider')
             )
             ->replaceArgument(0, new Reference("security_ldap_provider"));
-        //exit();
         return $providerId;
     }
 
-    /*public function getListenerId(){
-        return
-    }*/
 
     public function getKey()
     {

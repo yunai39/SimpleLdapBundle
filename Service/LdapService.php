@@ -24,9 +24,9 @@ class LdapService
 		$dn = $this->parameters['account_suffix'].'='.$username.','.$this->parameters['base_dn'];
         $connect = ldap_connect($this->parameters['server'],$this->parameters['port']);
 		ldap_set_option($connect, LDAP_OPT_DEBUG_LEVEL,7);
-        //avec ldaps
-        //$conn=ldap_connect("ldaps://".$this->server,$this->port);
-		if (!ldap_set_option($connect, LDAP_OPT_PROTOCOL_VERSION, 3)) 
+		// Set ten second before timeout
+		ldap_set_option($connect, LDAP_OPT_DEBULDAP_OPT_NETWORK_TIMEOUTG_LEVEL,10);
+        if (!ldap_set_option($connect, LDAP_OPT_PROTOCOL_VERSION, 3)) 
 		{
 			return false;
 		} 
