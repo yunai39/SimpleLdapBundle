@@ -31,7 +31,7 @@ You need to enable the bundle into your kernel
 Configuration
 -------------
 
-You need to configure your domain specific information
+You need to configure your domain specific information, put those information into app/config/parameters.yml
 
     # define your active directory server
     ldap.settings:
