@@ -17,11 +17,13 @@ class UserLdapProvider implements UserProviderInterface
 	protected $setting;
 	protected $role;
 	protected $class;
+	protected $roleSetting;
 	
-	public function __construct($setting,$role,$class){
+	public function __construct($setting,$role,$class,$roleSetting){
 		$this->setting = $setting;
 		$this->role = $role;
 		$this->class = $class;
+		$this->roleSetting = $roleSetting;
 	}
 
     /**
@@ -104,7 +106,7 @@ class UserLdapProvider implements UserProviderInterface
 			$function = 'set'.$key;
 			$adUser->$function($ldapService->infoCollection($adUser->getUsername(),$value));
 		}
-		$role = $ldapService->infoCollection($adUser->getUsername(),'businesscategory');
+		$role = $ldapService->infoCollection($adUser->getUsername(),$this->roleSetting);
 		if(array_key_exists($role,$this->role)){
         	$adUser->setRoles(array($this->role[$role]));
 		}else{

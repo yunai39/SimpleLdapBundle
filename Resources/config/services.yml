@@ -13,7 +13,7 @@ services:
         arguments: ["%ldap.settings%"]
     security_ldap_provider:
         class: "%security_ldap_provider.class%"
-        arguments: ["%ldap.settings.user%",%ldap.settings.role%,"%ldap.user.class%"]
+        arguments: ["%ldap.settings.user%",%ldap.settings.role%,"%ldap.user.class%","%ldap.role%"]
     security_authentification_provider:
         class: "%security_authentification_provider.class%"
         arguments: ["@security_ldap_provider",  "@security_ldap_service"]
