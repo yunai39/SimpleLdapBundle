@@ -63,7 +63,24 @@ Finally, the security parameters (Just what's needed for the Bundle, the rest is
     providers:
         my_active_directory_provider:
               id: security_ldap_provider
+You will also need to add the following in your firewal
 
+    ldap: true
+    
+Example
+
+        firewalls:
+        ldap:
+            pattern:  ^/
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path:   /logout
+                target: login
+            ldap: true
+                
 
 Useful information
 ----------------------
