@@ -82,9 +82,14 @@ Example
             ldap: true
                 
 
-Useful information
+Version
 ----------------------
 
-You can use the authentification via Ajax, instead of sending you a redirection, a json response wil be send true ou false
+1.0
 
-This Bundle doesn't need any databases, the password will not be registred anywhere. As it use the php_ldap extension, you can use ldaps (You will need to configure ldap on you own)
+	The bundle doesn't need any database, and the role willbe setted based on a field in the LDAP annuary
+	
+2.0
+	
+	Need to add maybe a database for the user role
+
