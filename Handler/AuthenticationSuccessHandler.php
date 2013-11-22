@@ -29,7 +29,15 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler {
         $this->router = $router;
         $this->routes = $routes;
     }
-
+	/**
+	 * @method onAuthenticationFailure
+	 * 
+	 * @param Request $request 						The request for the authentification
+	 * @param TokenInterface $token					The security token
+	 * 
+	 * This function will response true if the AuthenticationSuccess was proceded with Ajax
+	 * Otherwise it will redirect the user toward the a paged based on the role of the user and defined in parameters.yml
+	 */
     public function onAuthenticationSuccess( Request $request, TokenInterface $token ) {
         if( $request->isXmlHttpRequest() ) {
             $response = new JsonResponse( 'true' );

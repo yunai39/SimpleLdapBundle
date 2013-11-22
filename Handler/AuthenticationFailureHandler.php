@@ -15,6 +15,15 @@ class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler {
         parent::__construct( $httpKernel, $httpUtils, $options, $logger );
     }
 
+	/**
+	 * @method onAuthenticationFailure
+	 * 
+	 * @param Request $request 						The request for the authentification
+	 * @param AuthenticationException $exception	Exception generate by the failure
+	 * 
+	 * This function will response false if the AuthenticationFailure was proceded with Ajax
+	 * Otherwise it will redirect the user toward the previous page (login page usually) 
+	 */
     public function onAuthenticationFailure( Request $request, AuthenticationException $exception ) {
         if( $request->isXmlHttpRequest() ) {
             $response = new JsonResponse( 'false' );

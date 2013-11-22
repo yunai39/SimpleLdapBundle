@@ -7,6 +7,11 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 class SecurityController extends Controller
 {
+	/**
+	 * @method bool loginAction
+	 * 
+	 * This function will render a login form
+	 */
     public function loginAction()
     {
         $request = $this->getRequest();
