@@ -1,0 +1,20 @@
+Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
+    type: entity
+    table: null
+    repositoryClass: Yunai39\Bundle\SimpleLdapBundle\UserLdapRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        idLdap:
+            type: string
+            length: '255'
+        role:
+            type: string
+            length: '255'
+        valid:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }
