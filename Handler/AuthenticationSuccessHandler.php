@@ -46,10 +46,10 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler {
 	        $roles = $user->getRoles();
 	        $role = reset($roles);
 			$referer_url = $request->headers->get('referer');
-	        if (array_key_exists($role, $this->routes)) {
-	        	$referer_url = $this->routes[$role];
+	        if (@array_key_exists($role, $this->routes)) {
+	        	return new RedirectResponse($this->router->generate($this->routes[$role]));
 	        }
-	        return new RedirectResponse($this->router->generate($referer_url));
+	        return new RedirectResponse($referer_url);
         }
         return $response;
     }

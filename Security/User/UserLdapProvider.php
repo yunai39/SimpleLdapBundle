@@ -107,7 +107,8 @@ class UserLdapProvider implements UserProviderInterface
 			$adUser->$function($ldapService->infoCollection($adUser->getUsername(),$value));
 		}
 		$role = $ldapService->infoCollection($adUser->getUsername(),$this->roleSetting);
-		if(array_key_exists($role,$this->role)){
+		var_dump($role);
+		if(@array_key_exists($role,$this->role)){
         	$adUser->setRoles(array($this->role[$role]));
 		}else{
         	$adUser->setRoles(array('ROLE_USER'));
