@@ -4,30 +4,25 @@ namespace Yunai39\Bundle\SimpleLdapBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * UserInfo
+ * @ORM\MappedSuperclass
  */
 class UserLdap
 {
-    /**
-     * @var integer
-     */
-    private $id;
 
-    /**
-     * @var string
-     */
-    private $idLdap;
+    /** @ORM\Column(type="integer") */
+    protected $id;
 
-    /**
-     * @var string
-     */
-    private $role;
+
+    /** @ORM\Column(type="string") */
+    protected $idLdap;
+
+    /** @ORM\Column(type="string") */
+    protected $role;
 	
-    /**
-     * @var boolean
-     */
-    private $valid;
+    /** @ORM\Column(type="boolean") */
+    protected $valid;
 
 	
     /**
@@ -46,9 +41,9 @@ class UserLdap
      * @param string $idLdap
      * @return UserLdap
      */
-    public function setIdLdap($matricule)
+    public function setIdLdap($idLdap)
     {
-        $this->matricule = $matricule;
+        $this->idLdap = $idLdap;
     
         return $this;
     }

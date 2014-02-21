@@ -18,12 +18,14 @@ class UserLdapProvider implements UserProviderInterface
 	protected $role;
 	protected $class;
 	protected $roleSetting;
+	protected $repository;
 	
-	public function __construct($setting,$role,$class,$roleSetting){
+	public function __construct($setting,$role,$class,$roleSetting,$repository){
 		$this->setting = $setting;
 		$this->role = $role;
 		$this->class = $class;
 		$this->roleSetting = $roleSetting;
+		$this->repository = $repository;
 	}
 
     /**
@@ -101,19 +103,22 @@ class UserLdapProvider implements UserProviderInterface
                 $msg
             );
         }
-		
 		foreach($this->setting as $key => $value){
 			$function = 'set'.$key;
 			$adUser->$function($ldapService->infoCollection($adUser->getUsername(),$value));
 		}
-		$role = $ldapService->infoCollection($adUser->getUsername(),$this->roleSetting);
-		var_dump($role);
-		if(@array_key_exists($role,$this->role)){
-        	$adUser->setRoles(array($this->role[$role]));
-		}else{
+		$role = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
+		if($role[0]->getValid() == false){
         	$adUser->setRoles(array('ROLE_USER'));
 		}
-        return true;
+		else if($role[0]->getRole()){
+        	$adUser->setRoles(array($role[0]->getRole()));
+		}
+		else{
+        	$adUser->setRoles(array('ROLE_USER'));
+		}
+		return true;
+
     }
 
     /**

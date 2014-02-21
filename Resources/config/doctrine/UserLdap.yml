@@ -1,7 +1,5 @@
 Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
-    type: entity
-    table: null
-    repositoryClass: Yunai39\Bundle\SimpleLdapBundle\UserLdapRepository
+    type: mappedSuperclass
     fields:
         id:
             type: integer
@@ -17,4 +15,3 @@ Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
         valid:
             type: boolean
             nullable: true
-    lifecycleCallbacks: {  }

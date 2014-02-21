@@ -5,15 +5,24 @@ parameters:
     security_ldap_listener.class: Yunai39\Bundle\SimpleLdapBundle\Security\Listener\SecurityListener
     security.authentication.success_handler.class: Yunai39\Bundle\SimpleLdapBundle\Handler\AuthenticationSuccessHandler
     security.authentication.failure_handler.class: Yunai39\Bundle\SimpleLdapBundle\Handler\AuthenticationFailureHandler
+    security.user_ldap_repository.class: Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdapRepository
+    security.user_ldap.class: Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap
+
 
 services:
   
+    user_ldap_repository:
+        class: "%security.user_ldap_repository.class%"
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - "%security.user_ldap.class%"
     security_ldap_service:
         class: "%security_ldap.class%"
         arguments: ["%ldap.settings%"]
     security_ldap_provider:
         class: "%security_ldap_provider.class%"
-        arguments: ["%ldap.settings.user%",%ldap.settings.role%,"%ldap.user.class%","%ldap.role%"]
+        arguments: ["%ldap.settings.user%",%ldap.settings.role%,"%ldap.user.class%","%ldap.role%",@user_ldap_repository]
     security_authentification_provider:
         class: "%security_authentification_provider.class%"
         arguments: ["@security_ldap_provider",  "@security_ldap_service"]
