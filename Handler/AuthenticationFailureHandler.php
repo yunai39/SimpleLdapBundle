@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler;
 use Symfony\Component\Security\Http\HttpUtils;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler {
 

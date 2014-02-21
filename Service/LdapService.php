@@ -25,7 +25,7 @@ class LdapService
         $connect = ldap_connect($this->parameters['server'],$this->parameters['port']);
 		ldap_set_option($connect, LDAP_OPT_DEBUG_LEVEL,7);
 		// Set ten second before timeout
-		ldap_set_option($connect, LDAP_OPT_NETWORK_TIMEOUTG_LEVEL,10);
+		ldap_set_option($connect, LDAP_OPT_NETWORK_TIMEOUT,10);
         if (!ldap_set_option($connect, LDAP_OPT_PROTOCOL_VERSION, 3)) 
 		{
 			return false;
