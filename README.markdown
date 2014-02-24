@@ -3,8 +3,12 @@ SimpleLdapBundle
 
 This is a Bundle for Symfony for an Ldap Authentification
 
-This Bundle will not register any information in a databases, it wil only interact with the Ldap annuary.
-You do not need to add anything, expect for php_ldap, which is used to collect and authentificated an User.
+This bundle will is meant to be use without a database (V1.x) or you can use it with a database for (V2.x).
+
+The version without a database is describe on the tag V1
+
+The version with a database is simple, you have a database where a id corresponding to a field(the name of that field is defined int the parameter.yml) in the ldap tree (exemple: employeenumber - 00000), and you will give a specific role for the user with the field employee number 00000
+You also have a boolean field for the user to be unvalidated, user who are unvalidated and not recored in the database (but do exist in the LDAP tree, will have a default role defined in the parameter.yml)
 
 Requirement
 -----------
@@ -31,6 +35,19 @@ You need to enable the bundle into your kernel
 Configuration
 -------------
 
+The configuration is a bit long:
+
+First you need to register the bundle in your AppKernel
+	
+	
+    $bundles = array(
+	...
+	new Yunai39\Bundle\SimpleLdapBundle\SimpleLdapBundle(),
+	...
+	};
+
+
+
 You need to configure your domain specific information, put those information into app/config/parameters.yml
 
     # define your active directory server
@@ -43,19 +60,23 @@ You need to configure your domain specific information, put those information in
     ldap.settings.user:
           FullName: cn # Here the ldap attribut cn will be set to FullName in the User Class
           Email: mail
-    #The buissnessCategory wil determine the role of the user 
-    ldap.role: buissnesscategory
-    # The actual definition of the role, here if buissnesscategory is equal to Administration the user will have the ROLE_ADMIN
-    ldap.settings.role:
-          Administration: ROLE_ADMIN
     # The redirection after login based on the ROLE
     ldap.security.redirects: { ROLE_USER: user_home, ROLE_ADMIN: admin_home }
     # Name of the user class
     ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
+    #if the user is not registered in that database or is not registered as valid in the database he will have the default role
+    ldap.default.role: ROLE_USER
+	#Information about the table that will handle the role for the user
+    security.user_ldap_repository.class: Main\SecurityBundle\Entity\MyUserLdapRepository
+    security.user_ldap.class: Main\SecurityBundle\Entity\MyUserLdap
+
 
 You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
 
-Finally, the security parameters (Just what's needed for the Bundle, the rest is up to you)
+
+There is also the need to create the table for role association, check out [Create the association database](https://github.com/yunai39/SimpleLdapBundle/wiki/How-to-create-the-database-for-association)
+
+The security parameters (Just what's needed for the Bundle, the rest is up to you)
 
     security:
         encoders:
@@ -63,6 +84,7 @@ Finally, the security parameters (Just what's needed for the Bundle, the rest is
     providers:
         my_active_directory_provider:
               id: security_ldap_provider
+
 You will also need to add the following configuration key in your firewall to reference the providers
 
     ldap: true
@@ -85,11 +107,6 @@ Example
 Version
 ----------------------
 
-1.0
-
-	The bundle doesn't need any database, and the role willbe setted based on a field in the LDAP annuary
 	
 2.0
-	
-	Need to add maybe a database for the user role
-
+	- A database to handle user role
