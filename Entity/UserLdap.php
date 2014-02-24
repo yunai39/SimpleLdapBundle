@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-class UserLdap
+abstract class UserLdap
 {
 
     /** @ORM\Column(type="integer") */
