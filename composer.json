@@ -1,8 +1,9 @@
 {
     "name": "yunai39/simple-ldap-bundle",
-    "description":  "This bundle provides an integration of Symfony Security for an LDAP Annuary",
+    "description":  "This bundle provides an integration of Symfony Security for an LDAP Annuary, In the second version we will have a database to set role",
     "keywords":     ["ldap"],
     "type":         "symfony-bundle",
+    "version": "2.0",
     "require": {
         "php": ">=5.2.4"
     },
