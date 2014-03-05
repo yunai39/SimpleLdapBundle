@@ -67,7 +67,6 @@ You need to configure your domain specific information, put those information in
     #if the user is not registered in that database or is not registered as valid in the database he will have the default role
     ldap.default.role: ROLE_USER
 	#Information about the table that will handle the role for the user
-    security.user_ldap_repository.class: Main\SecurityBundle\Entity\MyUserLdapRepository
     security.user_ldap.class: Main\SecurityBundle\Entity\MyUserLdap
 
 
@@ -103,10 +102,14 @@ Example
                 target: login
             ldap: true
                 
+Information
+-----------
+
+Do not forget to generate a crud that will be in a safe part of your web site (Lets say you need the role ROLE_SUPER_ADMIN to acces it), and to create a user that have the role(ROLE_SUPER_ADMIN) to access that part of the website.
+
 
 Version
 ----------------------
-
 	
 2.0
 	- A database to handle user role
