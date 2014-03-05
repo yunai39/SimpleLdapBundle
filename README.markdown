@@ -67,7 +67,7 @@ You need to configure your domain specific information, put those information in
     #if the user is not registered in that database or is not registered as valid in the database he will have the default role
     ldap.default.role: ROLE_USER
 	#Information about the table that will handle the role for the user
-    security.user_ldap.class: Main\SecurityBundle\Entity\MyUserLdap
+    security.user_ldap.class: Acme\DemoBundle\Entity\MyUserLdap
 
 
 You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
@@ -79,7 +79,7 @@ The security parameters (Just what's needed for the Bundle, the rest is up to yo
 
     security:
         encoders:
-            Security\LdapBundle\Security\User\UserLdap : plaintext #Active directory does not support encrypted password yet
+            Acme\DemoBundle\Security\User\CustomLdapUser : plaintext #Active directory does not support encrypted password yet
     providers:
         my_active_directory_provider:
               id: security_ldap_provider
