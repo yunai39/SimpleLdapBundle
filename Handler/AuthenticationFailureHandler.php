@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler;
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
+use Symfony\Component\Security\Core\SecurityContextInterface;
 class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler {
 
     public function __construct( HttpKernelInterface $httpKernel, HttpUtils $httpUtils, array $options,  $logger = null ) {
@@ -31,6 +31,7 @@ class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler {
         } else {
             $response = new RedirectResponse($request->headers->get('referer'));
         }
+        $request->getSession()->set(SecurityContextInterface::AUTHENTICATION_ERROR, $exception);
         return $response;
     }
 }
