@@ -26,7 +26,7 @@ class SimpleLdapExtension extends Extension
         $loader->load('services.yml');
 		$container->setParameter('simple_ldap.settings', $config['settings']);
 		$container->setParameter('simple_ldap.settings_user', $config['settings_user']);
-		$container->setParameter('simple_ldap.user_redirect', $config['user_redirect']);
+		$container->setParameter('simple_ldap.user_redirects', $config['user_redirects']);
 		$container->setParameter('simple_ldap.user_class', $config['user_class']);
 		$container->setParameter('simple_ldap.default_role', $config['default_role']);
     }
