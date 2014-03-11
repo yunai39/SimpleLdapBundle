@@ -1,0 +1,30 @@
+userldap:
+    pattern:  /
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:index" }
+
+userldap_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:show" }
+
+userldap_new:
+    pattern:  /new
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:new" }
+
+userldap_create:
+    pattern:  /create
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:create" }
+    requirements: { _method: post }
+
+userldap_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:edit" }
+
+userldap_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:update" }
+    requirements: { _method: post|put }
+
+userldap_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SimpleLdapBundle:UserLdap:delete" }
+    requirements: { _method: post|delete }

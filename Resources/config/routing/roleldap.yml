@@ -1,0 +1,30 @@
+roleldap:
+    pattern:  /
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:index" }
+
+roleldap_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:show" }
+
+roleldap_new:
+    pattern:  /new
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:new" }
+
+roleldap_create:
+    pattern:  /create
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:create" }
+    requirements: { _method: post }
+
+roleldap_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:edit" }
+
+roleldap_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:update" }
+    requirements: { _method: post|put }
+
+roleldap_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SimpleLdapBundle:RoleLdap:delete" }
+    requirements: { _method: post|delete }

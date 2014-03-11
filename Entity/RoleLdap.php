@@ -48,5 +48,7 @@ class RoleLdap
     }
 
 	
-
+	public function __toString(){
+		return $this->roleName;
+	}
 }

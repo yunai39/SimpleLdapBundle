@@ -66,12 +66,14 @@ You need to configure your domain specific information, put those information in
     ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
     #if the user is not registered in that database or is not registered as valid in the database he will have the default role
     ldap.default.role: ROLE_USER
-
+	#Information about the table that will handle the role for the user
+    security.user_ldap.class: Acme\DemoBundle\Entity\MyUserLdap
 
 
 You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
 
-You will also need to update your database for  the role association
+
+
 The security parameters (Just what's needed for the Bundle, the rest is up to you)
 
     security:
@@ -88,23 +90,25 @@ You will also need to add the following configuration key in your firewall to re
 Example
 
         firewalls:
-        ldap:
-            pattern:  ^/
-            anonymous: ~
-            form_login:
-                login_path: login
-                check_path: login_check
-            logout:
-                path:   /logout
-                target: login
-            ldap: true
+	        ldap:
+	            pattern:  ^/
+	            provider: my_active_directory_provider
+	            anonymous: ~
+	            form_login:
+	                login_path: login
+	                check_path: login_check
+	            logout:
+	                path:   /logout
+	                target: login
+	            ldap: true
                 
-Information
------------
+Add the road for the gestion (Make sure they are under a firewall)
 
-Do not forget to generate a crud that will be in a safe part of your web site (Lets say you need the role ROLE_SUPER_ADMIN to acces it), and to create a user that have the role(ROLE_SUPER_ADMIN) to access that part of the website.
+		user_role:
+		    resource: "@SimpleLdapBundle/Resources/config/routing.yml"
+		    prefix:   /admin
 
-
+And finally do not forget to update your database.
 Version
 ----------------------
 	

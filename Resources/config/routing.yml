@@ -1,0 +1,4 @@
+simple_ldap_userldap:
+    resource: "@SimpleLdapBundle/Resources/config/routing/userldap.yml"
+    prefix:   /userldap
+
