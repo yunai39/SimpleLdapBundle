@@ -8,11 +8,21 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-abstract class RoleLdap
+class RoleLdap
 {
     /** @ORM\Column(type="string") */
     protected $roleName;
-	
+    /** @ORM\Column(type="integer") */
+    protected $id;
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set RoleName

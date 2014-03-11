@@ -54,6 +54,7 @@ class LdapService
 			$info = ldap_get_entries($ds, $sr);
 			ldap_close($ds);
 			$ret = array();
+			var_dump($keys);
 			foreach($keys as $key){
 				if(isset($info[0][$key][0])){
 					$ret[$key] = $info[0][$key][0];

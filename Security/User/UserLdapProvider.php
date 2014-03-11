@@ -20,7 +20,11 @@ class UserLdapProvider implements UserProviderInterface
 	protected $repository;
 	
 	public function __construct($setting,$Drole,$class,$repository){
-		$this->setting = $setting;
+		if($setting == null){
+			$this->setting = array();
+		}else{
+			$this->setting = $setting;
+		}
 		$this->Drole = $Drole;
 		$this->class = $class;
 		$this->repository = $repository;
@@ -106,13 +110,25 @@ class UserLdapProvider implements UserProviderInterface
 			$function = 'set'.$key;
 			$adUser->$function($info[$value]);
 		}
-		$role = $this->repository->findRoleScalar(array('idLdap' => $adUser->getUsername()));
-		if($role){
-	        $adUser->setRoles($role);
+		$user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
+			if(isset($user)){
+			$tmp = $user[0]->getRoles();
+			$roles = array();
+			foreach($tmp as $role){
+				$roles[] = $role->getRoleName();
+			}
+			
+			if(count($roles) != 0){
+		        $adUser->setRoles($roles);
+			}
+			else{
+	        	$adUser->setRoles(array($this->Drole));
+			}		
 		}
 		else{
         	$adUser->setRoles(array($this->Drole));
-		}
+		}	
+
 		return true;
 
     }

@@ -1,5 +1,12 @@
 Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap:
-    type: mappedSuperclass
+    type: entity
+
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
     fields:
         roleName:
             type: string
