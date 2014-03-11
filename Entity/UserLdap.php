@@ -8,10 +8,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-abstract class UserLdap
+class UserLdap
 {
 
-
+    /** @ORM\Column(type="integer") */
+    protected $id;
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /** @ORM\Column(type="string") */
     protected $idLdap;

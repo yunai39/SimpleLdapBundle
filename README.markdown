@@ -66,15 +66,12 @@ You need to configure your domain specific information, put those information in
     ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
     #if the user is not registered in that database or is not registered as valid in the database he will have the default role
     ldap.default.role: ROLE_USER
-	#Information about the table that will handle the role for the user
-    security.user_ldap.class: Acme\DemoBundle\Entity\MyUserLdap
+
 
 
 You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
 
-
-There is also the need to create the table for role association, check out [Create the association database](https://github.com/yunai39/SimpleLdapBundle/wiki/How-to-create-the-database-for-association)
-
+You will also need to update your database for  the role association
 The security parameters (Just what's needed for the Bundle, the rest is up to you)
 
     security:

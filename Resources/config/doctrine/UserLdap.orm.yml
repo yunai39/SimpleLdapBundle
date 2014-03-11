@@ -1,5 +1,11 @@
 Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
-    type: mappedSuperclass
+    type: entity
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
     fields:
 
         idLdap:
