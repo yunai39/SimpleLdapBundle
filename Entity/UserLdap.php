@@ -11,8 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class UserLdap
 {
 
-    /** @ORM\Column(type="integer") */
-    protected $id;
 
 
     /** @ORM\Column(type="string") */
@@ -23,17 +21,6 @@ abstract class UserLdap
 	
     /** @ORM\Column(type="boolean") */
     protected $valid;
-
-	
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idLdap
