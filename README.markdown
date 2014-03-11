@@ -109,6 +109,7 @@ Add the road for the gestion (Make sure they are under a firewall)
 		    prefix:   /admin
 
 And finally do not forget to update your database.
+
 Version
 ----------------------
 	
