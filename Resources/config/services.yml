@@ -19,10 +19,10 @@ services:
             - "%security.user_ldap.class%"
     security_ldap_service:
         class: "%security_ldap.class%"
-        arguments: ["%ldap.settings%"]
+        arguments: ["%simple_ldap.settings%"]
     security_ldap_provider:
         class: "%security_ldap_provider.class%"
-        arguments: ["%ldap.settings.user%",%ldap.default.role%,"%ldap.user.class%",@user_ldap_repository]
+        arguments: ["%simple_ldap.settings_user%",%simple_ldap.default_role%,"%simple_ldap.user_class%",@user_ldap_repository]
     security_authentification_provider:
         class: "%security_authentification_provider.class%"
         arguments: ["@security_ldap_provider",  "@security_ldap_service"]
@@ -30,7 +30,7 @@ services:
 
     security.authentication.success_handler:
         class:  "%security.authentication.success_handler.class%"
-        arguments:  ["@security.http_utils", {},'@router', '%ldap.security.redirects%']
+        arguments:  ["@security.http_utils", {},'@router', '%simple_ldap.user_redirects%']
         tags:
             - { name: 'monolog.logger', channel: 'security' }
 

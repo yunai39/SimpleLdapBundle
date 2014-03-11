@@ -48,27 +48,26 @@ First you need to register the bundle in your AppKernel
 
 
 
-You need to configure your domain specific information, put those information into app/config/parameters.yml
+You need to configure your domain specific information, put those information into app/config/config.yml
 
-    # define your active directory server
-    ldap.settings:
-          server: ip.to.your.server
-          port: 389 ou 636
-          account_suffix : employeeNumber # The account suffix will be the parameter used to search your ldap
-          base_dn : DC=example,DC=com  
-    # The attribut you want your user Class to have, those are the default
-    ldap.settings.user:
-          FullName: cn # Here the ldap attribut cn will be set to FullName in the User Class
-          Email: mail
-    # The redirection after login based on the ROLE
-    ldap.security.redirects: { ROLE_USER: user_home, ROLE_ADMIN: admin_home }
-    # Name of the user class
-    ldap.user.class: Acme\DemoBundle\Security\User\CustomLdapUser
-    #if the user is not registered in that database or is not registered as valid in the database he will have the default role
-    ldap.default.role: ROLE_USER
-	#Information about the table that will handle the role for the user
-    security.user_ldap.class: Acme\DemoBundle\Entity\MyUserLdap
-
+		simple_ldap:
+		    settings:
+		        server: ip.to.server.ldap
+		        port: 389 or 636
+		        account_suffix : employeeNumber 
+		        base_dn : OU=people,DC=company 
+			# The attribut you want your user Class to have
+		    settings_user:
+		    	FullName: cn
+		    	Email: mail
+			# The redirection after login based on the ROLE
+		    user_redirects: 
+		      ROLE_USER: user_home
+		      ROLE_ADMIN: admin_home
+			# Name of the user class
+		    user_class: Acme\DemoBundle\Security\User\CustomLdapUser
+			#if the user is not registered in that database or is not registered as valid in the database he will have the default role
+		    default_role: ROLE_USER
 
 You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
 
