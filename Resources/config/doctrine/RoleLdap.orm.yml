@@ -1,0 +1,6 @@
+Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap:
+    type: mappedSuperclass
+    fields:
+        roleName:
+            type: string
+            length: '255'

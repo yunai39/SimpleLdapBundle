@@ -43,7 +43,7 @@ class LdapService
 		}
 	}
 
-	public function infoCollection($username,$key){
+	public function infoCollection($username,$keys){
 		
 		$ds=ldap_connect($this->parameters['server'],$this->parameters['port']);  // doit �tre un serveur LDAP valide !
 		if ($ds) 
@@ -53,11 +53,15 @@ class LdapService
 			$sr=ldap_search($ds,$dn,$filter);  
 			$info = ldap_get_entries($ds, $sr);
 			ldap_close($ds);
-			if(isset($info[0][$key][0]))	
-				return $info[0][$key][0];
-			else {
-				return false;
+			$ret = array();
+			foreach($keys as $key){
+				if(isset($info[0][$key][0])){
+					$ret[$key] = $info[0][$key][0];
+				}else{
+					$ret[$key] = "";
+				}
 			}
+			return $ret;
 		} 
 	}
 }

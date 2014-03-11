@@ -11,3 +11,7 @@ Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
         valid:
             type: boolean
             nullable: true
+    manyToMany:
+        roles:
+            targetEntity: RoleLdap
+            cascade: ["persist", "merge"]

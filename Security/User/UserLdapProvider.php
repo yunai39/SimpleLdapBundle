@@ -101,21 +101,14 @@ class UserLdapProvider implements UserProviderInterface
                 $msg
             );
         }
+		$info = $ldapService->infoCollection($adUser->getUsername(),$this->setting);
 		foreach($this->setting as $key => $value){
 			$function = 'set'.$key;
-			$adUser->$function($ldapService->infoCollection($adUser->getUsername(),$value));
+			$adUser->$function($info[$value]);
 		}
-		$role = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
-			if(isset($role[0])){
-				if($role[0]->getValid() == false){
-	        	$adUser->setRoles(array($this->Drole));
-			}
-			else if($role[0]->getRole()){
-	        	$adUser->setRoles(array($role[0]->getRole()));
-			}
-			else{
-	        	$adUser->setRoles(array($this->Drole));
-			}
+		$role = $this->repository->findRoleScalar(array('idLdap' => $adUser->getUsername()));
+		if($role){
+	        $adUser->setRoles($role);
 		}
 		else{
         	$adUser->setRoles(array($this->Drole));

@@ -16,12 +16,51 @@ abstract class UserLdap
     /** @ORM\Column(type="string") */
     protected $idLdap;
 
-    /** @ORM\Column(type="string") */
-    protected $role;
+	
+
 	
     /** @ORM\Column(type="boolean") */
     protected $valid;
 
+	/**
+    * @ORM\ManyToMany(targetEntity="Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap", cascade={"persist"})
+    */
+    protected $roles;
+
+	 /**
+	    * Add roles
+	    *
+	    * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role
+	    */
+	  public function addRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role)
+	  {
+	    $this->roles[] = $role;
+	  }
+	
+	  /**
+	    * Remove roles
+	    *
+	    * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role
+	    */
+	  public function removeRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role) 
+	  {
+	    $this->roles->removeElement($role);
+	  }
+
+	  /**
+	    * Get roles
+	    *
+	    * @return Doctrine\Common\Collections\Collection
+	    */
+	  public function getRoles() 
+	  {
+	    return $this->roles;
+	  }
+	
+	public function __construct()
+  	{
+    		$this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+  	}
     /**
      * Set idLdap
      *
@@ -45,29 +84,6 @@ abstract class UserLdap
         return $this->idLdap;
     }
 
-    /**
-     * Set Role
-     *
-     * @param string $role
-     * @return UserLdap
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string 
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-	
     /**
      * Set valid
      *
