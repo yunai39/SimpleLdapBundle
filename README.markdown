@@ -59,7 +59,6 @@ You need to configure your domain specific information, put those information in
 			# The attribut you want your user Class to have
 		    settings_user:
 		    	FullName: cn
-		    	Email: mail
 			# The redirection after login based on the ROLE
 		    user_redirects: 
 		      ROLE_USER: user_home
@@ -69,7 +68,34 @@ You need to configure your domain specific information, put those information in
 			#if the user is not registered in that database or is not registered as valid in the database he will have the default role
 		    default_role: ROLE_USER
 
-You will also need to create an UserClass, check out [Example of an User](https://github.com/yunai39/SimpleLdapBundle/wiki/Example-User)
+You will also need to create an UserClass which inherit from the UserLdap defined in the bundle (Use that only if you want specific file from the ldap such as email or fullname)
+
+		<?php
+		
+		namespace Acme\DemoBundle\Security\User;
+		
+		use Symfony\Component\Security\Core\User\UserInterface;
+		use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdap;
+		class CustomLdapUser extends  UserLdap
+		{
+		/* displayname*/
+		    private $fullname;
+		
+		    public function getFullName(){
+		        return $this->fullname;
+		    }
+		
+		    public function setFullName($fullname){
+		        $this->fullname = $fullname; 
+		    }
+		}
+
+
+If you do not wish to have a user with email or any other field coming from LDAP you do not need to recreate an new user class, you can just use the userldap in the bundle
+
+Define the user class this way in the config.yml
+
+    	user_class: Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdap
 
 
 
@@ -112,5 +138,5 @@ And finally do not forget to update your database.
 Version
 ----------------------
 	
-2.0
+2.*
 	- A database to handle user role
