@@ -7,12 +7,7 @@
     "require": {
         "php": ">=5.2.4"
     },
-    "authors": [
-        {
-            "email": "yunai39@gmail.com",
-            "role": "Developer"
-        },
-    ],
+    
     "autoload":     {
         "psr-0": { "Yunai39\\Bundle\\SimpleLdapBundle": "" }
     },
