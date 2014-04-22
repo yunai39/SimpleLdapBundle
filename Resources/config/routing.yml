@@ -2,3 +2,6 @@ simple_ldap_userldap:
     resource: "@SimpleLdapBundle/Resources/config/routing/userldap.yml"
     prefix:   /userldap
 
+simple_ldap_userldap:
+    resource: "@SimpleLdapBundle/Resources/config/routing/roleldap.yml"
+    prefix:   /roleldap

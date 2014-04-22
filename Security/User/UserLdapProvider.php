@@ -111,7 +111,7 @@ class UserLdapProvider implements UserProviderInterface
 			$adUser->$function($info[$value]);
 		}
 		$user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
-			if(isset($user)){
+		if(count($user) != 0){
 			$tmp = $user[0]->getRoles();
 			$roles = array();
 			foreach($tmp as $role){
