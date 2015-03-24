@@ -55,7 +55,10 @@ You need to configure your domain specific information, put those information in
 		        server: ip.to.server.ldap
 		        port: 389 or 636
 		        account_suffix : employeeNumber 
-		        base_dn : OU=people,DC=company 
+		        base_dn :
+		            base1: OU=people,DC=company
+		            base2: OU=contractors,OU=people,DC=company
+
 			# The attribut you want your user Class to have
 		    settings_user:
 		    	FullName: cn
