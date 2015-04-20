@@ -105,10 +105,13 @@ class UserLdapProvider implements UserProviderInterface
                 $msg
             );
         }
-		$info = $ldapService->infoCollection($adUser->getUsername(),$this->setting);
-		foreach($this->setting as $key => $value){
-			$function = 'set'.$key;
-			$adUser->$function($info[$value]);
+
+		if(count($this->setting) != 0){
+			$info = $ldapService->infoCollection($adUser->getUsername(),$this->setting);
+			foreach($this->setting as $key => $value){
+				$function = 'set'.$key;
+				$adUser->$function($info[$value]);
+			}
 		}
 		$user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
 		if(count($user) != 0){
