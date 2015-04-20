@@ -47,7 +47,7 @@ class LdapService
         
     }
 
-    public function infoCollection($username,$key){
+ public function infoCollection($username,$key){
 
         foreach($this->parameters['base_dn'] as $dn)
         {
@@ -58,10 +58,13 @@ class LdapService
                 $sr=ldap_search($ds,$dn,$filter);  
                 $info = ldap_get_entries($ds, $sr);
                 ldap_close($ds);
-                if(isset($info[0][$key][0]))	
-                {
-                    return $info[0][$key][0];
-                }
+				foreach ($key as $k => $v) {
+					
+	                if( isset($info[0][$v]) )	
+	                {
+	                    return $info[0][$v][0];
+	                }
+				}
             }
         }
         
