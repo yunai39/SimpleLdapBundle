@@ -136,6 +136,20 @@ Add the road for the gestion (Make sure they are under a firewall)
 		    resource: "@SimpleLdapBundle/Resources/config/routing.yml"
 		    prefix:   /admin
 
+If you do not have the role for login, logout and login check
+
+
+	login:
+	    pattern:  /login
+	    defaults: { _controller: "SimpleLdapBundle:Security:login" }
+	
+	login_check:
+	    pattern:  /login_check
+	
+	
+	logout:
+	    pattern:  /logout
+
 And finally do not forget to update your database.
 
 Version
