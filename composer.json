@@ -3,7 +3,7 @@
     "description":  "This bundle provides an integration of Symfony Security for an LDAP Annuary, In the second version we will have a database to set role",
     "keywords":     ["ldap"],
     "type":         "symfony-bundle",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "require": {
         "php": ">=5.2.4"
     },
