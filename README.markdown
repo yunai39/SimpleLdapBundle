@@ -71,7 +71,7 @@ You need to configure your domain specific information, put those information in
 			#if the user is not registered in that database or is not registered as valid in the database he will have the default role
 		    default_role: ROLE_USER
 
-You will also need to create an UserClass which inherit from the UserLdap defined in the bundle (Use that only if you want specific file from the ldap such as email or fullname)
+You will also need to create an UserClass which inherit from the UserLdap defined in the bundle (Use that only if you want specific attribut from the ldap such as email or fullname)
 
 		<?php
 		
