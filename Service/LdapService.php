@@ -54,20 +54,21 @@ class LdapService
             $ds=ldap_connect($this->parameters['server'],$this->parameters['port']);  // doit �tre un serveur LDAP valide !
             if ($ds) 
             {
+            	
                 $filter=$this->parameters['account_suffix'].'='.$username;
                 $sr=ldap_search($ds,$dn,$filter);  
                 $info = ldap_get_entries($ds, $sr);
                 ldap_close($ds);
-				foreach ($key as $k => $v) {
-					
+		$ret= array();
+		foreach ($key as $k => $v) {
 	                if( isset($info[0][$v]) )	
 	                {
-	                    return $info[0][$v][0];
+	                    $ret[$v] = $info[0][$v][0];
 	                }
-				}
+		}
+		return $ret;
             }
         }
-        
         return false;
     }
 }
