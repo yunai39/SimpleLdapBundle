@@ -64,6 +64,8 @@ class LdapService
 	                if( isset($info[0][$v]) )	
 	                {
 	                    $ret[$v] = $info[0][$v][0];
+	                } else {
+	                    $ret[$v] = "";	
 	                }
 		}
 		return $ret;
