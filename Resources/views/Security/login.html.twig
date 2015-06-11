@@ -16,7 +16,7 @@
 		</legend>
 		
 		{% if error %}
-		    <div>{{ error.message }}</div>
+		    <div>{{ error.message | trans }}</div>
 		{% endif %}
 			
 		<form action="{{ path('login_check') }}" method="post" style="padding:20px">
