@@ -115,18 +115,24 @@ class UserLdapProvider implements UserProviderInterface
 		}
 		$user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
 		if(count($user) != 0){
-			$tmp = $user[0]->getRoles();
-			$roles = array();
-			foreach($tmp as $role){
-				$roles[] = $role->getRoleName();
-			}
-			
-			if(count($roles) != 0){
-		        $adUser->setRoles($roles);
+			if($user[0]->getValid()){
+				$tmp = $user[0]->getRoles();
+				$roles = array();
+				foreach($tmp as $role){
+					$roles[] = $role->getRoleName();
+				}
+				
+				if(count($roles) != 0){
+			        $adUser->setRoles($roles);
+				}
+				else{
+		        	$adUser->setRoles(array($this->Drole));
+				}	
 			}
 			else{
-	        	$adUser->setRoles(array($this->Drole));
-			}		
+        		$adUser->setRoles(array($this->Drole));
+			}
+				
 		}
 		else{
         	$adUser->setRoles(array($this->Drole));
