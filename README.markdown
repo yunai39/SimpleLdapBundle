@@ -3,12 +3,10 @@ SimpleLdapBundle
 
 This is a Bundle for Symfony for an Ldap Authentification
 
-This bundle will is meant to be use without a database (V1.x) or you can use it with a database for (V2.x).
+In this bundle, you will be able to authentificate user against an LDAP annuary. By default every single user in the LDAP annuary will have a default ROLE (role that you can choose). It is also possible to give specific user a specific role.
 
-The version without a database is describe on the tag V1
-
-The version with a database is simple, you have a database where a id corresponding to a field(the name of that field is defined int the parameter.yml) in the ldap tree (exemple: employeenumber - 00000), and you will give a specific role for the user with the field employee number 00000
-You also have a boolean field for the user to be unvalidated, user who are unvalidated and not recored in the database (but do exist in the LDAP tree, will have a default role defined in the parameter.yml)
+The database is simple, you have a database where a id corresponding to a field(the name of that field is defined int the parameter.yml) in the ldap tree (exemple: employeenumber - 00000), and you will give a specific role for the user with the field employee number 00000
+You also have a boolean field for the user to be unvalidated, user who are unvalidated, will have a default role defined in the parameter.yml.
 
 Requirement
 -----------
