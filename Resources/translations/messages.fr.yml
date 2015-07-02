@@ -1,6 +1,34 @@
 security.ldap:
     wrong_credential: Mot de passe ou identifiant invalide
-    bad_instance: Mauvaise instance d'utilisateur'
+    bad_instance: Mauvaise instance d'utilisateur
 authForm:
-    title: Formulaire d'authentification - Vetoquinol
+    title: Formulaire d'authentification
     pwd: Mot de passe
+    login: Login
+admin:
+    show: Voir
+    edit: Modifier
+    update: Mise à jour
+    create: Créer
+    delete: Supprimer
+    role:
+        titleList: Liste des rôles LDAP
+        titleEdit: Edition de rôle
+        titleNew: Nouveau rôle
+        role: Rôle
+        rolename: Nom du rôle
+        actions: Actions
+        newEntry: Créer une nouvelle entrée
+        backList: Retour à la liste
+        edit: Modifier
+    user:
+        titleList: Liste des utilisateurs LDAP
+        titleEdit: Edition d'utilisateur
+        titleNew: Nouvel utilisateur
+        user: Utilisateur
+        idLdap: Identifiant LDAP
+        valid: Valide
+        actions: Actions
+        newEntry: Créer une nouvelle entrée
+        backList: Retour à la liste
+        edit: Modifier

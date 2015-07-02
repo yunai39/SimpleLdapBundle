@@ -1,14 +1,14 @@
-{% extends '::base.html.twig' %}
+{% extends '::admin.html.twig' %}
 
 {% block body -%}
-    <h1>RoleLdap list</h1>
+    <h1>{% trans %}admin.role.titleList{% endtrans %}</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Rolename</th>
-                <th>Actions</th>
+                <th>{% trans %}admin.role.rolename{% endtrans %}</th>
+                <th>{% trans %}admin.role.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +19,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('roleldap_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('roleldap_show', { 'id': entity.id }) }}">{% trans %}admin.show{% endtrans %}</a>
                     </li>
                     <li>
-                        <a href="{{ path('roleldap_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('roleldap_edit', { 'id': entity.id }) }}">{% trans %}admin.edit{% endtrans %}</a>
                     </li>
                 </ul>
                 </td>
@@ -34,7 +34,7 @@
         <ul>
         <li>
             <a href="{{ path('roleldap_new') }}">
-                Create a new entry
+                {% trans %}admin.role.newEntry{% endtrans %}
             </a>
         </li>
     </ul>

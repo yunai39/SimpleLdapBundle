@@ -67,7 +67,7 @@ class RoleLdapController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'admin.create'));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class RoleLdapController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'admin.update'));
 
         return $form;
     }
@@ -216,7 +216,7 @@ class RoleLdapController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('roleldap_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'admin.delete'))
             ->getForm()
         ;
     }

@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>UserLdap list</h1>
+    <h1>{% trans %}admin.user.titleList{% endtrans %}</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Idldap</th>
-                <th>Valid</th>
-                <th>Actions</th>
+                <th>{% trans %}admin.user.idLdap{% endtrans %}</th>
+                <th>{% trans %}admin.user.valid{% endtrans %}</th>
+                <th>{% trans %}admin.user.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,10 +21,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('userldap_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('userldap_show', { 'id': entity.id }) }}">{% trans %}admin.show{% endtrans %}</a>
                     </li>
                     <li>
-                        <a href="{{ path('userldap_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('userldap_edit', { 'id': entity.id }) }}">{% trans %}admin.edit{% endtrans %}</a>
                     </li>
                 </ul>
                 </td>
@@ -36,7 +36,7 @@
         <ul>
         <li>
             <a href="{{ path('userldap_new') }}">
-                Create a new entry
+                {% trans %}admin.user.newEntry{% endtrans %}
             </a>
         </li>
     </ul>

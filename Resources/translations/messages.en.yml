@@ -1,0 +1,34 @@
+security.ldap:
+    wrong_credential: Wrong combination of password/login
+    bad_instance: Bad user instance
+authForm:
+    title: Authentification Form
+    pwd: Password
+    login: Login
+admin:
+    show: Show
+    edit: Edit
+    update: Update
+    create: Create
+    delete: Delete
+    role:
+        titleList: Ldap role list
+        titleEdit: Role edit
+        titleNew: New role
+        role: Role
+        rolename: role name
+        actions: Actions
+        newEntry: New entry
+        backList: Back to the list
+        edit: Edit
+    user:
+        titleList: Ldap user list
+        titleEdit: User edit
+        titleNew: New user
+        user: User
+        idLdap: LDAP Id
+        valid: Valid
+        actions: Actions
+        newEntry: New Entry
+        backList: Back to the list
+        edit: Edit

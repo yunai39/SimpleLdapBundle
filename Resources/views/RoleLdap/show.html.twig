@@ -1,7 +1,7 @@
-{% extends '::base.html.twig' %}
+{% extends '::admin.html.twig' %}
 
 {% block body -%}
-    <h1>RoleLdap</h1>
+    <h1>{% trans %}admin.role.role{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
@@ -10,7 +10,7 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Rolename</th>
+                <th>{% trans %}admin.role.rolename{% endtrans %}</th>
                 <td>{{ entity.roleName }}</td>
             </tr>
         </tbody>
@@ -19,12 +19,12 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('roleldap') }}">
-            Back to the list
+            {% trans %}admin.role.backList{% endtrans %}
         </a>
     </li>
     <li>
         <a href="{{ path('roleldap_edit', { 'id': entity.id }) }}">
-            Edit
+            {% trans %}admin.role.edit{% endtrans %}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

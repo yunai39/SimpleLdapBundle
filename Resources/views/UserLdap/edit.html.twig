@@ -1,14 +1,14 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>UserLdap edit</h1>
+    <h1>{% trans %}admin.user.titleEdit{% endtrans %}</h1>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
         <a href="{{ path('userldap') }}">
-            Back to the list
+            {% trans %}admin.user.backList{% endtrans %}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

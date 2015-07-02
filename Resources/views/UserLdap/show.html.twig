@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>UserLdap</h1>
+    <h1>{% trans %}admin.user.user{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
@@ -10,11 +10,11 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Idldap</th>
+                <th>{% trans %}admin.user.idLdap{% endtrans %}</th>
                 <td>{{ entity.idLdap }}</td>
             </tr>
             <tr>
-                <th>Valid</th>
+                <th>{% trans %}admin.user.valid{% endtrans %}</th>
                 <td>{{ entity.valid }}</td>
             </tr>
         </tbody>
@@ -23,12 +23,12 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('userldap') }}">
-            Back to the list
+            {% trans %}admin.user.backList{% endtrans %}
         </a>
     </li>
     <li>
         <a href="{{ path('userldap_edit', { 'id': entity.id }) }}">
-            Edit
+            {% trans %}admin.user.edit{% endtrans %}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
