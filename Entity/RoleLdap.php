@@ -51,4 +51,50 @@ class RoleLdap
 	public function __toString(){
 		return $this->roleName;
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $users;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add users
+     *
+     * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users
+     * @return RoleLdap
+     */
+    public function addUser(\Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users
+     */
+    public function removeUser(\Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+	
 }

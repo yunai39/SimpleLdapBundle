@@ -18,3 +18,4 @@ Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap:
         roles:
             targetEntity: RoleLdap
             cascade: ["persist", "merge"]
+            inversedBy: users

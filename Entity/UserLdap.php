@@ -117,5 +117,8 @@ class UserLdap
         return $this->valid;
     }
 	
+	public function __toString(){
+		return $this->idLdap;
+	}
 
 }

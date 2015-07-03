@@ -11,3 +11,7 @@ Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap:
         roleName:
             type: string
             length: '255'
+    manyToMany:
+        users:
+            targetEntity: UserLdap
+            mappedBy: roles
