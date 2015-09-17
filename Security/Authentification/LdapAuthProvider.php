@@ -3,28 +3,23 @@
 namespace Yunai39\Bundle\SimpleLdapBundle\Security\Authentification;
 
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
-
 use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider;
 
-class LdapAuthProvider implements AuthenticationProviderInterface
-{
+class LdapAuthProvider implements AuthenticationProviderInterface {
 
     /**
      * @var \Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider
      */
     private $userProvider;
-	private $LdapService;
-	
+    private $LdapService;
 
-    public function __construct(UserLdapProvider $userProvider, 
-        LdapService $LdapService  ) {
-        $this->userProvider  = $userProvider;
+    public function __construct(UserLdapProvider $userProvider, LdapService $LdapService) {
+        $this->userProvider = $userProvider;
         $this->LdapService = $LdapService;
     }
 
@@ -37,22 +32,18 @@ class LdapAuthProvider implements AuthenticationProviderInterface
      *
      * @throws AuthenticationException if the authentication fails
      */
-    public function authenticate(TokenInterface $token)
-    {
-        $User   = $this->userProvider->loadUserByUsername($token->getUsername());
+    public function authenticate(TokenInterface $token) {
+        $User = $this->userProvider->loadUserByUsername($token->getUsername());
         if ($User) {
             if (!$this->LdapService->authenticate($User->getUsername(), $token->getCredentials())) {
-                $msg =  'security.ldap.wrong_credential';
+                $msg = 'security.ldap.wrong_credential';
                 throw new BadCredentialsException($msg);
             }
             $this->userProvider->fetchData($User, $token, $this->LdapService);
         }
 
         $newToken = new UsernamePasswordToken(
-            $User,
-            $token->getCredentials(),
-            "security_ldap_provider",
-            $User->getRoles()
+                $User, $token->getCredentials(), "security_ldap_provider", $User->getRoles()
         );
 
         return $newToken;
@@ -65,8 +56,8 @@ class LdapAuthProvider implements AuthenticationProviderInterface
      *
      * @return Boolean true if the implementation supports the Token, false otherwise
      */
-    public function supports(TokenInterface $token)
-    {
+    public function supports(TokenInterface $token) {
         return $token instanceof UsernamePasswordToken;
     }
+
 }

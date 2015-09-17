@@ -4,30 +4,29 @@ namespace Yunai39\Bundle\SimpleLdapBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class UserLdap implements  UserInterface
-{
-/* displayname*/
+class UserLdap implements UserInterface {
+    /* displayname */
+
     private $username;
     private $password;
     private $salt;
     private $roles;
 
-
-    public function __construct($username, $password, array $roles)
-    {
+    public function __construct($username, $password, array $roles) {
         $this->username = $username;
         $this->password = $password;
         $this->salt = '';
         $this->roles = $roles;
     }
 
-    public function getFullName(){
+    public function getFullName() {
         return $this->fullname;
     }
 
-    public function setFullName($fullname){
-        $this->fullname = $fullname; 
+    public function setFullName($fullname) {
+        $this->fullname = $fullname;
     }
+
     /**
      * Returns the password used to authenticate the user.
      *
@@ -36,13 +35,9 @@ class UserLdap implements  UserInterface
      *
      * @return string The password
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
-
-
-
 
     /**
      * Returns the salt that was originally used to encode the password.
@@ -51,8 +46,7 @@ class UserLdap implements  UserInterface
      *
      * @return string The salt
      */
-    public function getSalt()
-    {
+    public function getSalt() {
         return null;
     }
 
@@ -61,8 +55,7 @@ class UserLdap implements  UserInterface
      *
      * @return string The username
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -74,19 +67,16 @@ class UserLdap implements  UserInterface
      *
      * @return void
      */
-    public function eraseCredentials()
-    {
+    public function eraseCredentials() {
         //return void;
     }
 
+    public function getRoles() {
+        return $this->roles;
+    }
 
-     public function getRoles()
-     {
-         return $this->roles;
-     }
-
-    public function setRoles(array $roles)
-    {
+    public function setRoles(array $roles) {
         $this->roles = $roles;
     }
+
 }

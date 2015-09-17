@@ -2,18 +2,13 @@
 
 namespace Yunai39\Bundle\SimpleLdapBundle\Security\Factory;
 
-use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
-use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\AbstractFactory;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\FormLoginFactory;
 
-class LdapAuthFactory extends FormLoginFactory
-{
-
-
+class LdapAuthFactory extends FormLoginFactory {
 
     /**
      * Subclasses must return the id of a service which implements the
@@ -26,22 +21,19 @@ class LdapAuthFactory extends FormLoginFactory
      *
      * @return string never null, the id of the authentication provider
      */
-    protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId)
-    {
+    protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId) {
 
         $providerId = 'security.authentication.provider.ldap.' . $id;
         $container
-            ->setDefinition(
-                $providerId,
-                new DefinitionDecorator('security_authentification_provider')
-            )
-            ->replaceArgument(0, new Reference("security_ldap_provider"));
+                ->setDefinition(
+                        $providerId, new DefinitionDecorator('security_authentification_provider')
+                )
+                ->replaceArgument(0, new Reference("security_ldap_provider"));
         return $providerId;
     }
 
-
-    public function getKey()
-    {
+    public function getKey() {
         return 'ldap';
     }
+
 }

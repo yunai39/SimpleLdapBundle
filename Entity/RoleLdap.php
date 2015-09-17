@@ -33,7 +33,6 @@ class RoleLdap
     public function setRoleName($roleName)
     {
         $this->roleName = $roleName;
-    
         return $this;
     }
 
@@ -47,10 +46,10 @@ class RoleLdap
         return $this->roleName;
     }
 
-	
-	public function __toString(){
-		return $this->roleName;
-	}
+    
+    public function __toString(){
+        return $this->roleName;
+    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -73,7 +72,6 @@ class RoleLdap
     public function addUser(\Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users)
     {
         $this->users[] = $users;
-    
         return $this;
     }
 
@@ -96,5 +94,5 @@ class RoleLdap
     {
         return $this->users;
     }
-	
+    
 }

@@ -7,28 +7,25 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Translation\TranslatorInterface;
 use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 
+class UserLdapProvider implements UserProviderInterface {
 
-class UserLdapProvider implements UserProviderInterface
-{
+    protected $setting;
+    protected $Drole;
+    protected $class;
+    protected $repository;
 
-	protected $setting;
-	protected $Drole;
-	protected $class;
-	protected $repository;
-	
-	public function __construct($setting,$Drole,$class,$repository){
-		if($setting == null){
-			$this->setting = array();
-		}else{
-			$this->setting = $setting;
-		}
-		$this->Drole = $Drole;
-		$this->class = $class;
-		$this->repository = $repository;
-	}
+    public function __construct($setting, $Drole, $class, $repository) {
+        if ($setting == null) {
+            $this->setting = array();
+        } else {
+            $this->setting = $setting;
+        }
+        $this->Drole = $Drole;
+        $this->class = $class;
+        $this->repository = $repository;
+    }
 
     /**
      * Loads the user for the given username.
@@ -44,24 +41,20 @@ class UserLdapProvider implements UserProviderInterface
      * @throws UsernameNotFoundException if the user is not found
      *
      */
-    public function loadUserByUsername($username)
-    {
+    public function loadUserByUsername($username) {
         // The password is set to something impossible to find.
         try {
-            $user       = new $this->class($username, uniqid(true) . rand(
-                    0,
-                    424242
-                ), array());
+            $user = new $this->class($username, uniqid(true) . rand(
+                            0, 424242
+                    ), array());
         } catch (\InvalidArgumentException $e) {
             $msg = $this->translator->trans(
-                'User invalid',
-                array('%reason%' => $e->getMessage())
+                    'User invalid', array('%reason%' => $e->getMessage())
             );
             throw new UsernameNotFoundException($msg);
         }
         return $user;
     }
-
 
     /**
      * Refreshes the user for the account interface.
@@ -76,11 +69,10 @@ class UserLdapProvider implements UserProviderInterface
      *
      * @throws UnsupportedUserException if the account is not supported
      */
-    public function refreshUser(UserInterface $user)
-    {
+    public function refreshUser(UserInterface $user) {
         if (!$user) {
             $msg = $this->translator->trans(
-                'security.ldap.bad_instance'
+                    'security.ldap.bad_instance'
             );
             throw new UnsupportedUserException($msg);
         }
@@ -88,58 +80,50 @@ class UserLdapProvider implements UserProviderInterface
         return $user;
     }
 
-
-    public function fetchData( $adUser, TokenInterface $token, LdapService $ldapService)
-    {
-    	$connected = $ldapService->connect();
-        $isAD      = $ldapService->authenticate($adUser->getUsername(), $token->getCredentials());
+    public function fetchData($adUser, TokenInterface $token, LdapService $ldapService) {
+        $connected = $ldapService->connect();
+        $isAD = $ldapService->authenticate($adUser->getUsername(), $token->getCredentials());
         if (!$isAD || !$connected) {
             $msg = $this->translator->trans(
-                'Mauvaise réponse du serveur: %connexion_status% %is_AD%',
-                array(
-                    '%connexion_status%' => var_export($connected, 1),
-                    '%is_AD%'            => var_export($isAD, 1),
-                )
+                    'Mauvaise réponse du serveur: %connexion_status% %is_AD%', array(
+                '%connexion_status%' => var_export($connected, 1),
+                '%is_AD%' => var_export($isAD, 1),
+                    )
             );
             throw new \Exception(
-                $msg
+            $msg
             );
         }
 
-		if(count($this->setting) != 0){
-			$info = $ldapService->infoCollection($adUser->getUsername(),$this->setting);
-			foreach($this->setting as $key => $value){
-				$function = 'set'.$key;
-				$adUser->$function($info[$value]);
-			}
-		}
-		$user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
-		if(count($user) != 0){
-			if($user[0]->getValid()){
-				$tmp = $user[0]->getRoles();
-				$roles = array();
-				foreach($tmp as $role){
-					$roles[] = $role->getRoleName();
-				}
-				
-				if(count($roles) != 0){
-			        $adUser->setRoles($roles);
-				}
-				else{
-		        	$adUser->setRoles(array($this->Drole));
-				}	
-			}
-			else{
-        		$adUser->setRoles(array($this->Drole));
-			}
-				
-		}
-		else{
-        	$adUser->setRoles(array($this->Drole));
-		}	
+        if (count($this->setting) != 0) {
+            $info = $ldapService->infoCollection($adUser->getUsername(), $this->setting);
+            foreach ($this->setting as $key => $value) {
+                $function = 'set' . $key;
+                $adUser->$function($info[$value]);
+            }
+        }
+        $user = $this->repository->findBy(array('idLdap' => $adUser->getUsername()));
+        if (count($user) != 0) {
+            if ($user[0]->getValid()) {
+                $tmp = $user[0]->getRoles();
+                $roles = array();
+                foreach ($tmp as $role) {
+                    $roles[] = $role->getRoleName();
+                }
 
-		return true;
+                if (count($roles) != 0) {
+                    $adUser->setRoles($roles);
+                } else {
+                    $adUser->setRoles(array($this->Drole));
+                }
+            } else {
+                $adUser->setRoles(array($this->Drole));
+            }
+        } else {
+            $adUser->setRoles(array($this->Drole));
+        }
 
+        return true;
     }
 
     /**
@@ -149,8 +133,8 @@ class UserLdapProvider implements UserProviderInterface
      *
      * @return Boolean
      */
-    public function supportsClass($class)
-    {
+    public function supportsClass($class) {
         return $class === 'security_ldap_user';
     }
+
 }
