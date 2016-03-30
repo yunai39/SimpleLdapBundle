@@ -7,17 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-class UserLdap {
-
+class UserLdap
+{
     /** @ORM\Column(type="integer") */
     protected $id;
 
     /**
      * Get id
-     *
-     * @return integer 
+     * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -32,19 +32,19 @@ class UserLdap {
      */
     protected $roles;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
-
     /**
      * Set idLdap
-     *
      * @param string $idLdap
      * @return UserLdap
      */
-    public function setIdLdap($idLdap) {
+    public function setIdLdap($idLdap)
+    {
         $this->idLdap = $idLdap;
 
         return $this;
@@ -52,61 +52,65 @@ class UserLdap {
 
     /**
      * Get idLdap
-     *
-     * @return string 
+     * @return string
      */
-    public function getIdLdap() {
+    public function getIdLdap()
+    {
         return $this->idLdap;
     }
 
     /**
      * Set valid
-     *
      * @param boolean $valid
      * @return UserInfo
      */
-    public function setValid($valid) {
+    public function setValid($valid)
+    {
         $this->valid = $valid;
         return $this;
     }
 
     /**
      * Get valid
-     *
-     * @return boolean 
+     * @return boolean
      */
-    public function getValid() {
+    public function getValid()
+    {
         return $this->valid;
     }
 
     /**
      * Add roles
-     *
      * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role
      */
-    public function addRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role) {
+    public function addRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role)
+    {
         $this->roles[] = $role;
     }
 
     /**
      * Remove roles
-     *
      * @param \Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role
      */
-    public function removeRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role) {
+    public function removeRole(\Yunai39\Bundle\SimpleLdapBundle\Entity\RoleLdap $role)
+    {
         $this->roles->removeElement($role);
     }
 
     /**
      * Get roles
-     *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getRoles() {
+    public function getRoles()
+    {
         return $this->roles;
     }
 
-    public function __toString() {
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
         return $this->idLdap;
     }
 }

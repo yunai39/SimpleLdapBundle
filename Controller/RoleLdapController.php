@@ -11,17 +11,19 @@ use Yunai39\Bundle\SimpleLdapBundle\Form\RoleLdapType;
  * RoleLdap controller.
  *
  */
-class RoleLdapController extends Controller {
+class RoleLdapController extends Controller
+{
 
     /**
      * Lists all RoleLdap entities.
      *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SimpleLdapBundle:RoleLdap')->findAll();
         return $this->render('SimpleLdapBundle:RoleLdap:index.html.twig', array(
-                    'entities' => $entities,
+            'entities' => $entities,
         ));
     }
 
@@ -29,7 +31,8 @@ class RoleLdapController extends Controller {
      * Creates a new RoleLdap entity.
      *
      */
-    public function createAction(Request $request) {
+    public function createAction(Request $request)
+    {
         $entity = new RoleLdap();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -40,8 +43,8 @@ class RoleLdapController extends Controller {
             return $this->redirect($this->generateUrl('roleldap_show', array('id' => $entity->getId())));
         }
         return $this->render('SimpleLdapBundle:RoleLdap:new.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView(),
+            'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
 
@@ -52,7 +55,8 @@ class RoleLdapController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(RoleLdap $entity) {
+    private function createCreateForm(RoleLdap $entity)
+    {
         $form = $this->createForm(new RoleLdapType(), $entity, array(
             'action' => $this->generateUrl('roleldap_create'),
             'method' => 'POST',
@@ -65,12 +69,13 @@ class RoleLdapController extends Controller {
      * Displays a form to create a new RoleLdap entity.
      *
      */
-    public function newAction() {
+    public function newAction()
+    {
         $entity = new RoleLdap();
         $form = $this->createCreateForm($entity);
         return $this->render('SimpleLdapBundle:RoleLdap:new.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView(),
+            'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
 
@@ -78,7 +83,8 @@ class RoleLdapController extends Controller {
      * Finds and displays a RoleLdap entity.
      *
      */
-    public function showAction($id) {
+    public function showAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SimpleLdapBundle:RoleLdap')->find($id);
         if (!$entity) {
@@ -86,15 +92,17 @@ class RoleLdapController extends Controller {
         }
         $deleteForm = $this->createDeleteForm($id);
         return $this->render('SimpleLdapBundle:RoleLdap:show.html.twig', array(
-                    'entity' => $entity,
-                    'delete_form' => $deleteForm->createView(),));
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**
      * Displays a form to edit an existing RoleLdap entity.
      *
      */
-    public function editAction($id) {
+    public function editAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SimpleLdapBundle:RoleLdap')->find($id);
         if (!$entity) {
@@ -104,9 +112,9 @@ class RoleLdapController extends Controller {
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('SimpleLdapBundle:RoleLdap:edit.html.twig', array(
-                    'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -117,7 +125,8 @@ class RoleLdapController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(RoleLdap $entity) {
+    private function createEditForm(RoleLdap $entity)
+    {
         $form = $this->createForm(new RoleLdapType(), $entity, array(
             'action' => $this->generateUrl('roleldap_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -130,7 +139,8 @@ class RoleLdapController extends Controller {
      * Edits an existing RoleLdap entity.
      *
      */
-    public function updateAction(Request $request, $id) {
+    public function updateAction(Request $request, $id)
+    {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SimpleLdapBundle:RoleLdap')->find($id);
         if (!$entity) {
@@ -145,9 +155,9 @@ class RoleLdapController extends Controller {
             return $this->redirect($this->generateUrl('roleldap_edit', array('id' => $id)));
         }
         return $this->render('SimpleLdapBundle:RoleLdap:edit.html.twig', array(
-                    'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -155,7 +165,8 @@ class RoleLdapController extends Controller {
      * Deletes a RoleLdap entity.
      *
      */
-    public function deleteAction(Request $request, $id) {
+    public function deleteAction(Request $request, $id)
+    {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -178,13 +189,12 @@ class RoleLdapController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id) {
+    private function createDeleteForm($id)
+    {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('roleldap_delete', array('id' => $id)))
-                        ->setMethod('DELETE')
-                        ->add('submit', 'submit', array('label' => 'admin.delete'))
-                        ->getForm()
-        ;
+            ->setAction($this->generateUrl('roleldap_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'admin.delete'))
+            ->getForm();
     }
-
 }

@@ -12,12 +12,14 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SimpleLdapExtension extends Extension {
+class SimpleLdapExtension extends Extension
+{
 
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container) {
+    public function load(array $configs, ContainerBuilder $container)
+    {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -28,5 +30,4 @@ class SimpleLdapExtension extends Extension {
         $container->setParameter('simple_ldap.user_class', $config['user_class']);
         $container->setParameter('simple_ldap.default_role', $config['default_role']);
     }
-
 }

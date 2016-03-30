@@ -10,23 +10,22 @@ use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessH
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler {
-
+class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
+{
     /**
      * Router
-     *
      * @var Router
      */
     protected $router;
 
     /**
      * Routes
-     *
      * @var array
      */
     protected $routes = array();
 
-    public function __construct(HttpUtils $httpUtils, array $options, $router, $routes) {
+    public function __construct(HttpUtils $httpUtils, array $options, $router, $routes)
+    {
         parent::__construct($httpUtils, $options);
         $this->router = $router;
         $this->routes = $routes;
@@ -34,14 +33,14 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler {
 
     /**
      * @method onAuthenticationFailure
-     * 
-     * @param Request $request                         The request for the authentification
-     * @param TokenInterface $token                    The security token
-     * 
+     * @param Request $request The request for the authentification
+     * @param TokenInterface $token The security token
      * This function will response true if the AuthenticationSuccess was proceded with Ajax
-     * Otherwise it will redirect the user toward the a paged based on the role of the user and defined in parameters.yml
+     * Otherwise it will redirect the user toward the a paged
+     * based on the role of the user and defined in parameters.yml
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token) {
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token)
+    {
         if ($request->isXmlHttpRequest()) {
             $response = new JsonResponse('true');
         } else {
@@ -56,5 +55,4 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler {
         }
         return $response;
     }
-
 }

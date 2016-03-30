@@ -8,32 +8,33 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\FormLoginFactory;
 
-class LdapAuthFactory extends FormLoginFactory {
+class LdapAuthFactory extends FormLoginFactory
+{
 
     /**
      * Subclasses must return the id of a service which implements the
      * AuthenticationProviderInterface.
-     *
      * @param ContainerBuilder $container
-     * @param string $id             The unique id of the firewall
-     * @param array $config         The options array for this listener
+     * @param string $id The unique id of the firewall
+     * @param array $config The options array for this listener
      * @param string $userProviderId The id of the user provider
-     *
      * @return string never null, the id of the authentication provider
      */
-    protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId) {
+    protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId)
+    {
 
         $providerId = 'security.authentication.provider.ldap.' . $id;
         $container
-                ->setDefinition(
-                        $providerId, new DefinitionDecorator('security_authentification_provider')
-                )
-                ->replaceArgument(0, new Reference("security_ldap_provider"));
+            ->setDefinition(
+                $providerId,
+                new DefinitionDecorator('security_authentification_provider')
+            )
+            ->replaceArgument(0, new Reference("security_ldap_provider"));
         return $providerId;
     }
 
-    public function getKey() {
+    public function getKey()
+    {
         return 'ldap';
     }
-
 }

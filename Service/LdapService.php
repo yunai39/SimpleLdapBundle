@@ -2,20 +2,41 @@
 
 namespace Yunai39\Bundle\SimpleLdapBundle\Service;
 
-class LdapService {
+/**
+ * Class LdapService
+ * @package Yunai39\Bundle\SimpleLdapBundle\Service
+ */
+class LdapService
+{
 
+    /** @var array */
     protected $parameters;
 
-    public function __construct($parameters) {
+    /**
+     * LdapService constructor.
+     * @param array $parameters
+     */
+    public function __construct($parameters)
+    {
         $this->parameters = $parameters;
     }
 
-    public function connect() {
+    /**
+     * @return resource
+     */
+    public function connect()
+    {
         $connect = ldap_connect($this->parameters['server'], $this->parameters['port']);
         return $connect;
     }
 
-    public function authenticate($username, $password) {
+    /**
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
+    public function authenticate($username, $password)
+    {
 
         foreach ($this->parameters['base_dn'] as $d) {
             $dn = $this->parameters['account_suffix'] . '=' . $username . ',' . $d;
@@ -29,19 +50,28 @@ class LdapService {
             $bindServerLDAP = @ldap_bind($connect, $dn, $password);
             if ($bindServerLDAP) {
                 ldap_close($connect);
+
                 return true;
             }
         }
-
-
         ldap_close($connect);
+
         return false;
     }
 
-    public function infoCollection($username, $key) {
-
+    /**
+     * @param string $username
+     * @param $key
+     * @return array|bool
+     */
+    public function infoCollection($username, $key)
+    {
         foreach ($this->parameters['base_dn'] as $dn) {
-            $ds = ldap_connect($this->parameters['server'], $this->parameters['port']);  // doit �tre un serveur LDAP valide !
+            $ds = ldap_connect(
+                $this->parameters['server'],
+                $this->parameters['port']
+            );
+            // doit �tre un serveur LDAP valide !
             if ($ds) {
 
                 $filter = $this->parameters['account_suffix'] . '=' . $username;
@@ -61,5 +91,4 @@ class LdapService {
         }
         return false;
     }
-
 }

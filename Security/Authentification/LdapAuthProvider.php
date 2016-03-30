@@ -10,29 +10,28 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider;
 
-class LdapAuthProvider implements AuthenticationProviderInterface {
-
+class LdapAuthProvider implements AuthenticationProviderInterface
+{
     /**
      * @var \Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider
      */
     private $userProvider;
     private $LdapService;
 
-    public function __construct(UserLdapProvider $userProvider, LdapService $LdapService) {
+    public function __construct(UserLdapProvider $userProvider, LdapService $LdapService)
+    {
         $this->userProvider = $userProvider;
         $this->LdapService = $LdapService;
     }
 
     /**
      * Attempts to authenticates a TokenInterface object.
-     *
      * @param TokenInterface $token The TokenInterface instance to authenticate
-     *
      * @return TokenInterface An authenticated TokenInterface instance, never null
-     *
      * @throws AuthenticationException if the authentication fails
      */
-    public function authenticate(TokenInterface $token) {
+    public function authenticate(TokenInterface $token)
+    {
         $User = $this->userProvider->loadUserByUsername($token->getUsername());
         if ($User) {
             if (!$this->LdapService->authenticate($User->getUsername(), $token->getCredentials())) {
@@ -43,7 +42,10 @@ class LdapAuthProvider implements AuthenticationProviderInterface {
         }
 
         $newToken = new UsernamePasswordToken(
-                $User, $token->getCredentials(), "security_ldap_provider", $User->getRoles()
+            $User,
+            $token->getCredentials(),
+            "security_ldap_provider",
+            $User->getRoles()
         );
 
         return $newToken;
@@ -51,13 +53,11 @@ class LdapAuthProvider implements AuthenticationProviderInterface {
 
     /**
      * Checks whether this provider supports the given token.
-     *
      * @param TokenInterface $token A TokenInterface instance
-     *
      * @return Boolean true if the implementation supports the Token, false otherwise
      */
-    public function supports(TokenInterface $token) {
+    public function supports(TokenInterface $token)
+    {
         return $token instanceof UsernamePasswordToken;
     }
-
 }
