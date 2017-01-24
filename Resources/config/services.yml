@@ -22,7 +22,7 @@ services:
         arguments: ["%simple_ldap.settings%"]
     security_ldap_provider:
         class: "%security_ldap_provider.class%"
-        arguments: ["%simple_ldap.settings_user%",%simple_ldap.default_role%,"%simple_ldap.user_class%",@user_ldap_repository]
+        arguments: ["%simple_ldap.settings_user%","%simple_ldap.default_role%","%simple_ldap.user_class%","@user_ldap_repository"]
     security_authentification_provider:
         class: "%security_authentification_provider.class%"
         arguments: ["@security_ldap_provider",  "@security_ldap_service"]
