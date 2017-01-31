@@ -34,7 +34,7 @@ class UserLdapProvider implements UserProviderInterface
         }
         $this->Drole = $Drole;
         $this->class = $class;
-        $this->repository = $repository;
+        $this->repository = $repository->getRepository("Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap");
     }
 
     /**
