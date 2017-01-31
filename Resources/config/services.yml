@@ -13,8 +13,7 @@ services:
   
     user_ldap_repository:
         class: "%security.user_ldap_repository.class%"
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
+        factory: ['@doctrine','getManagerForClass']
         arguments:
             - "%security.user_ldap.class%"
     security_ldap_service:
