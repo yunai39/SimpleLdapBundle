@@ -3,7 +3,7 @@
     "description":  "This bundle provides an integration of Symfony Security for an LDAP Annuary, every user in the LDAP annuary will have a default role, but it is possible to set specific role for specific user",
     "keywords":     ["ldap","authentification"],
     "type":         "symfony-bundle",
-    "version": "2.1.2",
+    "version": "2.2.3",
     "require": {
         "php": ">=5.2.4"
     },
