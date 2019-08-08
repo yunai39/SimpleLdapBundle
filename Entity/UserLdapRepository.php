@@ -12,20 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserLdapRepository extends EntityRepository
 {
-
-    public function findRoleScalar($username)
-    {
-        $query = $this->getEntityManager()->createQueryBuilder();
-        $parcs = $query->select('r.role_name')
-            ->from('UserLdap', 'u')
-            ->innerJoin('u.roles', 'r')
-            ->where('u.id_ldap = :username')
-            ->setParameter('username', $username)
-            ->getQuery()->getScalarResult();
-        if ($parcs) {
-            return array_map('current', $result);
-        } else {
-            return false;
-        }
-    }
 }

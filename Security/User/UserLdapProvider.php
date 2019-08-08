@@ -23,8 +23,16 @@ class UserLdapProvider implements UserProviderInterface
 
     /** @var string */
     protected $class;
+
     protected $repository;
 
+    /**
+     * UserLdapProvider constructor.
+     * @param $setting
+     * @param $Drole
+     * @param $class
+     * @param $repository
+     */
     public function __construct($setting, $Drole, $class, $repository)
     {
         if ($setting == null) {
@@ -34,7 +42,7 @@ class UserLdapProvider implements UserProviderInterface
         }
         $this->Drole = $Drole;
         $this->class = $class;
-        $this->repository = $repository->getRepository("Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap");
+        $this->repository = $repository->getRepository(UserLdap::class);
     }
 
     /**

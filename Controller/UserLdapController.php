@@ -8,8 +8,8 @@ use Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap;
 use Yunai39\Bundle\SimpleLdapBundle\Form\UserLdapType;
 
 /**
- * UserLdap controller.
- *
+ * Class UserLdapController
+ * @package Yunai39\Bundle\SimpleLdapBundle\Controller
  */
 class UserLdapController extends Controller
 {
@@ -19,8 +19,9 @@ class UserLdapController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $em      = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SimpleLdapBundle:UserLdap')->findAll();
+
         return $this->render('SimpleLdapBundle:UserLdap:index.html.twig', array(
             'entities' => $entities,
         ));
@@ -35,17 +36,19 @@ class UserLdapController extends Controller
     public function createAction(Request $request)
     {
         $entity = new UserLdap();
-        $form = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
             return $this->redirect($this->generateUrl('userldap_show', array('id' => $entity->getId())));
         }
+
         return $this->render('SimpleLdapBundle:UserLdap:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView(),
+            'form'   => $form->createView(),
         ));
     }
 
@@ -61,6 +64,7 @@ class UserLdapController extends Controller
             'method' => 'POST',
         ));
         $form->add('submit', 'submit', array('label' => 'admin.create'));
+
         return $form;
     }
 
@@ -70,7 +74,8 @@ class UserLdapController extends Controller
     public function newAction()
     {
         $entity = new UserLdap();
-        $form = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity);
+
         return $this->render('SimpleLdapBundle:UserLdap:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView(),
@@ -84,12 +89,13 @@ class UserLdapController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em    = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SimpleLdapBundle:UserLdap')->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find UserLdap entity.');
         }
         $deleteForm = $this->createDeleteForm($id);
+
         return $this->render(
             'SimpleLdapBundle:UserLdap:show.html.twig',
             array(
@@ -106,13 +112,14 @@ class UserLdapController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em     = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('SimpleLdapBundle:UserLdap')->find($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find UserLdap entity.');
         }
-        $editForm = $this->createEditForm($entity);
+        $editForm   = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
+
         return $this->render(
             'SimpleLdapBundle:UserLdap:edit.html.twig',
             array(
@@ -135,6 +142,7 @@ class UserLdapController extends Controller
             'method' => 'PUT',
         ));
         $form->add('submit', 'submit', array('label' => 'admin.update'));
+
         return $form;
     }
 
@@ -156,11 +164,13 @@ class UserLdapController extends Controller
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
             $em->flush();
+
             return $this->redirect($this->generateUrl('userldap_edit', array('id' => $id)));
         }
+
         return $this->render('SimpleLdapBundle:UserLdap:edit.html.twig', array(
-            'entity' => $entity,
-            'edit_form' => $editForm->createView(),
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -176,7 +186,7 @@ class UserLdapController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em     = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('SimpleLdapBundle:UserLdap')->find($id);
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find UserLdap entity.');
@@ -184,6 +194,7 @@ class UserLdapController extends Controller
             $em->remove($entity);
             $em->flush();
         }
+
         return $this->redirect($this->generateUrl('userldap'));
     }
 

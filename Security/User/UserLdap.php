@@ -14,6 +14,9 @@ class UserLdap implements UserInterface
     private $username;
 
     /** @var string */
+    private $fullname;
+
+    /** @var string */
     private $password;
 
     /** @var string */

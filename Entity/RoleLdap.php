@@ -25,12 +25,13 @@ class RoleLdap
 
     /**
      * Set RoleName
-     * @param string $role
+     * @param string $roleName
      * @return UserLdap
      */
     public function setRoleName($roleName)
     {
         $this->roleName = $roleName;
+
         return $this;
     }
 
@@ -70,6 +71,7 @@ class RoleLdap
     public function addUser(\Yunai39\Bundle\SimpleLdapBundle\Entity\UserLdap $users)
     {
         $this->users[] = $users;
+
         return $this;
     }
 

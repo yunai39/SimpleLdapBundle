@@ -10,6 +10,10 @@ use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessH
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * Class AuthenticationSuccessHandler
+ * @package Yunai39\Bundle\SimpleLdapBundle\Handler
+ */
 class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
 {
     /**
@@ -24,6 +28,9 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
      */
     protected $routes = array();
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(HttpUtils $httpUtils, array $options, $router, $routes)
     {
         parent::__construct($httpUtils, $options);
@@ -38,6 +45,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
      * This function will response true if the AuthenticationSuccess was proceded with Ajax
      * Otherwise it will redirect the user toward the a paged
      * based on the role of the user and defined in parameters.yml
+     * @return JsonResponse|RedirectResponse
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
@@ -45,8 +53,9 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             $response = new JsonResponse('true');
         } else {
             $session = $request->getSession();
-            if(!is_null($session->get("_security.main.target_path"))) {
+            if (!is_null($session->get("_security.main.target_path"))) {
                 $url = $session->get("_security.main.target_path");
+
                 return new RedirectResponse($url);
             }
             $user = $token->getUser();
@@ -56,8 +65,10 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             if (@array_key_exists($role, $this->routes)) {
                 return new RedirectResponse($this->router->generate($this->routes[$role]));
             }
+
             return new RedirectResponse($referer_url);
         }
+
         return $response;
     }
 }

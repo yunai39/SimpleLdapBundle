@@ -8,7 +8,6 @@ namespace Yunai39\Bundle\SimpleLdapBundle\Service;
  */
 class LdapService
 {
-
     /** @var array */
     protected $parameters;
 
@@ -27,6 +26,7 @@ class LdapService
     public function connect()
     {
         $connect = ldap_connect($this->parameters['server'], $this->parameters['port']);
+
         return $connect;
     }
 
@@ -37,7 +37,6 @@ class LdapService
      */
     public function authenticate($username, $password)
     {
-
         foreach ($this->parameters['base_dn'] as $d) {
             $dn = $this->parameters['account_suffix'] . '=' . $username . ',' . $d;
 
@@ -73,7 +72,6 @@ class LdapService
             );
             // doit �tre un serveur LDAP valide !
             if ($ds) {
-
                 $filter = $this->parameters['account_suffix'] . '=' . $username;
                 $sr = ldap_search($ds, $dn, $filter);
                 $info = ldap_get_entries($ds, $sr);
@@ -86,9 +84,11 @@ class LdapService
                         $ret[$v] = "";
                     }
                 }
+
                 return $ret;
             }
         }
+
         return false;
     }
 }

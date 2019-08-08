@@ -67,6 +67,7 @@ class UserLdap
     public function setValid($valid)
     {
         $this->valid = $valid;
+
         return $this;
     }
 

@@ -8,9 +8,12 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\FormLoginFactory;
 
+/**
+ * Class LdapAuthFactory
+ * @package Yunai39\Bundle\SimpleLdapBundle\Security\Factory
+ */
 class LdapAuthFactory extends FormLoginFactory
 {
-
     /**
      * Subclasses must return the id of a service which implements the
      * AuthenticationProviderInterface.
@@ -33,6 +36,9 @@ class LdapAuthFactory extends FormLoginFactory
         return $providerId;
     }
 
+    /**
+     * @return string
+     */
     public function getKey()
     {
         return 'ldap';

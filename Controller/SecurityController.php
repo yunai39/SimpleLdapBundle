@@ -5,9 +5,12 @@ namespace Yunai39\Bundle\SimpleLdapBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+/**
+ * Class SecurityController
+ * @package Yunai39\Bundle\SimpleLdapBundle\Controller
+ */
 class SecurityController extends Controller
 {
-
     /**
      * @method bool loginAction
      *
@@ -23,6 +26,7 @@ class SecurityController extends Controller
         } else {
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         }
+
         return $this->render(
             'SimpleLdapBundle:Security:login.html.twig',
             array(

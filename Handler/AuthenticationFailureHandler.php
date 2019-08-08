@@ -10,12 +10,17 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler;
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-//use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class AuthenticationFailureHandler
+ * @package Yunai39\Bundle\SimpleLdapBundle\Handler
+ */
 class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler
 {
-
+    /**
+     * @inheritdoc
+     */
     public function __construct(HttpKernelInterface $httpKernel, HttpUtils $httpUtils, array $options, $logger = null)
     {
         parent::__construct($httpKernel, $httpUtils, $options, $logger);
@@ -27,6 +32,7 @@ class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler
      * @param AuthenticationException $exception Exception generate by the failure
      * This function will response false if the AuthenticationFailure was proceded with Ajax
      * Otherwise it will redirect the user toward the previous page (login page usually)
+     * @return JsonResponse|RedirectResponse
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
@@ -37,6 +43,7 @@ class AuthenticationFailureHandler extends DefaultAuthenticationFailureHandler
         }
         
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+
         return $response;
     }
 }

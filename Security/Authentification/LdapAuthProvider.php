@@ -10,6 +10,10 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Yunai39\Bundle\SimpleLdapBundle\Service\LdapService;
 use Yunai39\Bundle\SimpleLdapBundle\Security\User\UserLdapProvider;
 
+/**
+ * Class LdapAuthProvider
+ * @package Yunai39\Bundle\SimpleLdapBundle\Security\Authentification
+ */
 class LdapAuthProvider implements AuthenticationProviderInterface
 {
     /**
@@ -18,6 +22,11 @@ class LdapAuthProvider implements AuthenticationProviderInterface
     private $userProvider;
     private $LdapService;
 
+    /**
+     * LdapAuthProvider constructor.
+     * @param UserLdapProvider $userProvider
+     * @param LdapService $LdapService
+     */
     public function __construct(UserLdapProvider $userProvider, LdapService $LdapService)
     {
         $this->userProvider = $userProvider;
@@ -29,6 +38,7 @@ class LdapAuthProvider implements AuthenticationProviderInterface
      * @param TokenInterface $token The TokenInterface instance to authenticate
      * @return TokenInterface An authenticated TokenInterface instance, never null
      * @throws AuthenticationException if the authentication fails
+     * @throws BadCredentialsException if the authentication fails
      */
     public function authenticate(TokenInterface $token)
     {
