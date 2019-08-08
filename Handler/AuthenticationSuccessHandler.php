@@ -44,6 +44,11 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
         if ($request->isXmlHttpRequest()) {
             $response = new JsonResponse('true');
         } else {
+            $session = $request->getSession();
+            if(!is_null($session->get("_security.main.target_path"))) {
+                $url = $session->get("_security.main.target_path");
+                return new RedirectResponse($url);
+            }
             $user = $token->getUser();
             $roles = $user->getRoles();
             $role = reset($roles);
